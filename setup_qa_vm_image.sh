@@ -1,5 +1,5 @@
 #!/bin/bash
-LC_ALL=C
+export LC_ALL=C
 
 cd /root/
 
@@ -10,12 +10,15 @@ echo 'nameserver 8.8.8.8' > /etc/resolv.conf
 id
 cat /etc/issue
 
-# do the stuff
+# setup rally
 apt-get -y --force-yes update
 apt-get -y --force-yes install libpq-dev git-core python-dev libevent-dev libssl-dev python-pip
 pip install pbr
 
 git clone https://github.com/stackforge/rally.git && cd rally && python setup.py install && rally-manage db recreate
+
+# setup tools
+apt-get -y --force-yes install iperf tcpdump 
 
 # clean up
 mv /etc/resolv.conf_bak /etc/resolv.conf
