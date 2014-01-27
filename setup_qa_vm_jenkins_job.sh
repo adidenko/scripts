@@ -1,3 +1,4 @@
+# we can move SRC_IMAGE and IMG_ROOT_DEVICE into Job Parameters if we want to use different source images
 export SRC_IMAGE="http://cloud-images.ubuntu.com/precise/current/precise-server-cloudimg-amd64-disk1.img"
 export IMG_ROOT_DEVICE="/dev/sda"
 
