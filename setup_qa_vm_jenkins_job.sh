@@ -47,3 +47,8 @@ sudo chroot $MNT /usr/local/bin/setup_stuff.sh || \
 
 sudo umount $MNT/sys $MNT/proc $MNT/dev
 sudo umount $MNT
+
+# now we have base.img image with our stuff
+echo DONE
+ls -la base.img
+
