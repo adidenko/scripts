@@ -1,0 +1,333 @@
+--- 
+management_network_range: 192.168.0.0/24
+network_scheme: 
+  interfaces: 
+    eth0: 
+      L2: 
+        vlan_splinters: "off"
+    eth1: 
+      L2: 
+        vlan_splinters: "off"
+    eth2: 
+      L2: 
+        vlan_splinters: "off"
+  endpoints: 
+    br-ex: 
+      gateway: 172.16.0.1
+      IP: 
+      - 172.16.0.3/24
+    br-mgmt: 
+      IP: 
+      - 192.168.0.2/24
+    br-storage: 
+      IP: 
+      - 192.168.1.1/24
+    br-fw-admin: 
+      IP: 
+      - 10.20.0.3/24
+    br-prv: 
+      IP: none
+  provider: ovs
+  version: "1.0"
+  roles: 
+    storage: br-storage
+    fw-admin: br-fw-admin
+    management: br-mgmt
+    private: br-prv
+    ex: br-ex
+  transformations: 
+  - action: add-br
+    name: br-eth0
+  - action: add-port
+    bridge: br-eth0
+    name: eth0
+  - action: add-br
+    name: br-eth1
+  - action: add-port
+    bridge: br-eth1
+    name: eth1
+  - action: add-br
+    name: br-eth2
+  - action: add-port
+    bridge: br-eth2
+    name: eth2
+  - action: add-br
+    name: br-ex
+  - action: add-br
+    name: br-mgmt
+  - action: add-br
+    name: br-storage
+  - action: add-br
+    name: br-fw-admin
+  - action: add-patch
+    tags: 
+    - 102
+    - 0
+    bridges: 
+    - br-eth0
+    - br-storage
+  - action: add-patch
+    trunks: 
+    - 0
+    bridges: 
+    - br-eth1
+    - br-ex
+  - action: add-patch
+    tags: 
+    - 101
+    - 0
+    bridges: 
+    - br-eth0
+    - br-mgmt
+  - action: add-patch
+    trunks: 
+    - 0
+    bridges: 
+    - br-eth0
+    - br-fw-admin
+  - action: add-br
+    name: br-prv
+  - action: add-patch
+    bridges: 
+    - br-eth0
+    - br-prv
+ceilometer: 
+  metering_secret: Q1z4Q3Zm
+  user_password: 34thWH4P
+  db_password: UVwMvGTN
+  enabled: false
+online: true
+master_ip: 10.20.0.2
+public_vip: 172.16.0.2
+metadata: 
+  weight: 30
+  label: Common
+compute_scheduler_driver: nova.scheduler.filter_scheduler.FilterScheduler
+base_syslog: 
+  syslog_port: "514"
+  syslog_server: 10.20.0.2
+heat: 
+  rabbit_password: WL78KjnJ
+  user_password: tL4Akjx4
+  db_password: d3hv8q1b
+  enabled: true
+status: discover
+murano: 
+  rabbit_password: CdNsr0RT
+  user_password: qgXvq2CO
+  db_password: XSOUrEws
+  enabled: false
+storage: 
+  metadata: 
+    weight: 60
+    label: Storage
+  volumes_lvm: true
+  osd_pool_size: "2"
+  pg_num: 128
+  images_ceph: false
+  objects_ceph: false
+  ephemeral_ceph: false
+  volumes_ceph: false
+quantum_settings: 
+  metadata: 
+    metadata_proxy_shared_secret: lt3Ew64R
+  keystone: 
+    admin_password: gEAVg7Vb
+  L2: 
+    base_mac: fa:16:3e:00:00:00
+    phys_nets: 
+      physnet1: 
+        vlan_range: 
+        bridge: br-ex
+      physnet2: 
+        vlan_range: 1000:1030
+        bridge: br-prv
+    segmentation_type: vlan
+  L3: 
+    use_namespaces: true
+  predefined_networks: 
+    net04: 
+      shared: false
+      L3: 
+        nameservers: 
+        - 8.8.4.4
+        - 8.8.8.8
+        enable_dhcp: true
+        gateway: 192.168.111.1
+        floating: 
+        subnet: 192.168.111.0/24
+      L2: 
+        segment_id: 
+        physnet: physnet2
+        router_ext: false
+        network_type: vlan
+      tenant: admin
+    net04_ext: 
+      shared: false
+      L3: 
+        nameservers: []
+
+        enable_dhcp: false
+        gateway: 172.16.0.1
+        floating: 172.16.0.130:172.16.0.254
+        subnet: 172.16.0.0/24
+      L2: 
+        segment_id: 
+        physnet: physnet1
+        router_ext: true
+        network_type: flat
+      tenant: admin
+  database: 
+    passwd: pDGmLvnA
+cinder: 
+  user_password: PvQk5o2Y
+  db_password: 6IdgjbBV
+quantum: true
+debug: false
+mp: 
+- point: "1"
+  weight: "1"
+- point: "2"
+  weight: "2"
+keystone: 
+  db_password: BNrzeSqx
+  admin_token: hVvrJo9G
+vlan_splinters: 
+  metadata: 
+    toggleable: true
+    weight: 50
+    enabled: false
+    label: VLAN Splinters
+  vswitch: disabled
+priority: 400
+deployment_id: 1
+use_cinder: true
+storage_network_range: 192.168.1.0/24
+auto_assign_floating_ip: false
+swift: 
+  user_password: IR7gQWQd
+nova_quota: false
+start_guests_on_host_boot: true
+management_vip: 192.168.0.1
+test_vm_image: 
+  img_path: /opt/vm/cirros-x86_64-disk.img
+  disk_format: qcow2
+  os_name: cirros
+  img_name: TestVM
+  public: "true"
+  min_ram: 64
+  container_format: bare
+  glance_properties: "--property murano_image_info='{\"title\": \"Murano Demo\", \"type\": \"cirros.demo\"}'"
+vcenter: 
+  host_ip: ""
+  metadata: 
+    weight: 20
+    label: vCenter
+  vc_user: ""
+  vc_password: ""
+  cluster: ""
+  use_vcenter: true
+syslog: 
+  syslog_transport: tcp
+  metadata: 
+    weight: 50
+    label: Syslog
+  syslog_port: "514"
+  syslog_server: ""
+access: 
+  metadata: 
+    weight: 10
+    label: Access
+  tenant: admin
+  email: admin@example.org
+  password: admin
+  user: admin
+nodes: 
+- storage_netmask: 255.255.255.0
+  public_address: 172.16.0.3
+  storage_address: 192.168.1.1
+  public_netmask: 255.255.255.0
+  swift_zone: "1"
+  internal_netmask: 255.255.255.0
+  role: primary-controller
+  internal_address: 192.168.0.2
+  name: node-1
+  fqdn: node-1.domain.tld
+  uid: "1"
+- storage_netmask: 255.255.255.0
+  public_address: 172.16.0.4
+  storage_address: 192.168.1.2
+  public_netmask: 255.255.255.0
+  swift_zone: "2"
+  internal_netmask: 255.255.255.0
+  role: controller
+  internal_address: 192.168.0.3
+  name: node-2
+  fqdn: node-2.domain.tld
+  uid: "2"
+- storage_netmask: 255.255.255.0
+  public_address: 172.16.0.5
+  storage_address: 192.168.1.3
+  public_netmask: 255.255.255.0
+  swift_zone: "3"
+  internal_netmask: 255.255.255.0
+  role: controller
+  internal_address: 192.168.0.4
+  name: node-3
+  fqdn: node-3.domain.tld
+  uid: "3"
+- storage_netmask: 255.255.255.0
+  public_address: 172.16.0.6
+  storage_address: 192.168.1.4
+  public_netmask: 255.255.255.0
+  swift_zone: "4"
+  internal_netmask: 255.255.255.0
+  role: compute
+  internal_address: 192.168.0.5
+  name: node-4
+  fqdn: node-4.domain.tld
+  uid: "4"
+- storage_netmask: 255.255.255.0
+  public_address: 172.16.0.7
+  storage_address: 192.168.1.5
+  public_netmask: 255.255.255.0
+  swift_zone: "5"
+  internal_netmask: 255.255.255.0
+  role: cinder
+  internal_address: 192.168.0.6
+  name: node-5
+  fqdn: node-5.domain.tld
+  uid: "5"
+role: primary-controller
+sahara: 
+  user_password: VwiojIT3
+  db_password: Udql6rYb
+  enabled: true
+fuel_version: "5.0"
+cobbler: 
+  profile: centos-x86_64
+deployment_mode: ha_compact
+kernel_params: 
+  kernel: console=ttyS0,9600 console=tty0 biosdevname=0 crashkernel=none rootdelay=90 nomodeset
+  metadata: 
+    weight: 40
+    label: Kernel parameters
+rabbit: 
+  password: 8Uq6pgAC
+glance: 
+  db_password: dP5m686h
+  user_password: kBMDI5QA
+  image_cache_max_size: "18386465587"
+libvirt_type: qemu
+use_cow_images: true
+fqdn: node-1.domain.tld
+last_controller: node-3
+auth_key: ""
+nova: 
+  state_path: /var/lib/nova
+  user_password: b9d0ZYKb
+  db_password: J1Vpbwp8
+openstack_version: "2014.1"
+mysql: 
+  root_password: MRAU1aFV
+uid: "1"
