@@ -1,6 +1,6 @@
 #!/bin/bash
 
-YAML_URL_BASE="https://github.com/adidenko/scripts/blob/master/fuel-yaml/5.1/"
+YAML_URL_BASE="https://raw.githubusercontent.com/adidenko/scripts/master/fuel-yaml/5.1"
 YAMLS="
 ceph-osd.node-2.test.domain.local.yaml
 cinder.node-5.domain.tld.yaml
