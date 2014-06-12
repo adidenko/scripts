@@ -10,6 +10,7 @@ controller.node-2.domain.tld.yaml
 primary-controller.node-1.domain.tld.yaml
 "
 
+echo
 printf "%-60s%-10s %s\n" "YAML EXAMPLE" "RESULT" "LOGFILE"
 for YAML in $YAMLS ; do
     printf "%-60s" "Running $YAML ..."
