@@ -14,7 +14,7 @@ echo
 printf "%-60s%-10s %s\n" "YAML EXAMPLE" "RESULT" "LOGFILE"
 for YAML in $YAMLS ; do
     printf "%-60s" "Running $YAML ..."
-    curl -s "$YAML_URL_BASE/$YAML" > /etc/astute.yaml
+    curl -s "$YAML_URL_BASE/$YAML" > /etc/fuel/astute.yaml
     ( FACTER_hostname=`awk '/^fqdn:/{print $2}' /etc/fuel/astute.yaml | cut -d. -f1` puppet apply -d -v --modulepath /tmp/modules/upstream:/tmp/modules/fuel-library/deployment/puppet --noop /tmp/modules/fuel-library/deployment/puppet/osnailyfacter/examples/site.pp ; echo Exit code: $? ; echo ) &> /tmp/modules/puppet-apply.${YAML}.log
     if grep -q 'Exit code: 0' /tmp/modules/puppet-apply.${YAML}.log ; then
         printf "%-10s %s\n" "OK" "/tmp/modules/puppet-apply.${YAML}.log"
