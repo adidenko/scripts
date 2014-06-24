@@ -8,8 +8,8 @@ compute.node-4.domain.tld.yaml
 controller.ceph.node-3.test.domain.local.yaml
 controller.node-2.domain.tld.yaml
 primary-controller.node-1.domain.tld.yaml
-pull-request.controller.node-1.test.domain.local.yaml
-pull-request.compute.node-3.test.domain.local.yaml
+pr.controller.node-1.test.domain.local.yaml
+pr.compute.node-3.test.domain.local.yaml
 "
 
 echo
