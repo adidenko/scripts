@@ -1,0 +1,297 @@
+---
+use_cow_images: true
+uid: '3'
+management_vip: 10.108.25.2
+syslog:
+  syslog_port: 5514
+  syslog_transport: tcp
+  syslog_server: 10.108.21.1
+  metadata:
+    weight: 50
+    label: Syslog
+libvirt_type: qemu
+sahara:
+  db_password: MPXmwNqh
+  user_password: rUSygziC
+  enabled: false
+mysql:
+  root_password: PO2LWqPe
+quantum: true
+glance:
+  image_cache_max_size: '5368709120'
+  user_password: rJRdn1Dn
+  db_password: dO4JBKbn
+cinder:
+  db_password: aD6qkbJx
+  user_password: hMPiPjL4
+quantum_settings:
+  database:
+    passwd: OLNnqGq0
+  keystone:
+    admin_password: egkVX1oo
+  L3:
+    use_namespaces: true
+  L2:
+    phys_nets:
+      physnet1:
+        bridge: br-ex
+        vlan_range: 
+    base_mac: fa:16:3e:00:00:00
+    segmentation_type: gre
+    tunnel_id_ranges: 2:65535
+  predefined_networks:
+    net04_ext:
+      shared: false
+      L2:
+        network_type: flat
+        router_ext: true
+        physnet: physnet1
+        segment_id: 
+      L3:
+        nameservers: []
+        subnet: 10.108.23.0/24
+        floating: 10.108.23.128:10.108.23.254
+        gateway: 10.108.23.1
+        enable_dhcp: false
+      tenant: admin
+    net04:
+      shared: false
+      L2:
+        network_type: gre
+        router_ext: false
+        physnet: 
+        segment_id: 
+      L3:
+        nameservers:
+        - 8.8.4.4
+        - 8.8.8.8
+        subnet: 192.168.111.0/24
+        floating: 
+        gateway: 192.168.111.1
+        enable_dhcp: true
+      tenant: admin
+  metadata:
+    metadata_proxy_shared_secret: y8HV4rrq
+openstack_version: '2014.1'
+kernel_params:
+  kernel: console=ttyS0,9600 console=tty0 biosdevname=0 crashkernel=none rootdelay=90
+    nomodeset
+  metadata:
+    weight: 40
+    label: Kernel parameters
+swift:
+  user_password: 7VmWnZ8o
+storage:
+  volumes_ceph: false
+  objects_ceph: false
+  ephemeral_ceph: false
+  volumes_lvm: true
+  pg_num: 128
+  osd_pool_size: '2'
+  images_ceph: false
+  metadata:
+    weight: 60
+    label: Storage
+nova:
+  db_password: UJdiMxye
+  user_password: V7PcFdmk
+  state_path: "/var/lib/nova"
+master_ip: 10.108.21.2
+priority: 200
+murano:
+  db_password: ucNgRhd1
+  user_password: exJv6nQe
+  enabled: false
+  rabbit_password: 5QqHFMOS
+role: compute
+vlan_splinters:
+  vswitch: disabled
+  metadata:
+    enabled: false
+    toggleable: true
+    weight: 50
+    label: VLAN Splinters
+online: true
+keystone:
+  db_password: 65PYsifO
+  admin_token: 5OwrHlJw
+vcenter:
+  use_vcenter: true
+  vc_user: ''
+  host_ip: ''
+  cluster: ''
+  vc_password: ''
+  metadata:
+    restrictions:
+    - settings:common.libvirt_type.value != 'vcenter'
+    weight: 20
+    label: vCenter
+nova_quota: false
+metadata:
+  weight: 30
+  label: Common
+status: provisioned
+network_scheme:
+  transformations:
+  - action: add-br
+    name: br-eth0
+  - action: add-port
+    bridge: br-eth0
+    name: eth0
+  - action: add-br
+    name: br-eth1
+  - action: add-port
+    bridge: br-eth1
+    name: eth1
+  - action: add-br
+    name: br-eth2
+  - action: add-port
+    bridge: br-eth2
+    name: eth2
+  - action: add-br
+    name: br-eth3
+  - action: add-port
+    bridge: br-eth3
+    name: eth3
+  - action: add-br
+    name: br-eth4
+  - action: add-port
+    bridge: br-eth4
+    name: eth4
+  - action: add-br
+    name: br-ex
+  - action: add-br
+    name: br-mgmt
+  - action: add-br
+    name: br-storage
+  - action: add-br
+    name: br-fw-admin
+  - action: add-patch
+    bridges:
+    - br-eth4
+    - br-storage
+    trunks:
+    - 0
+  - action: add-patch
+    bridges:
+    - br-eth1
+    - br-ex
+    trunks:
+    - 0
+  - action: add-patch
+    bridges:
+    - br-eth2
+    - br-mgmt
+    trunks:
+    - 0
+  - action: add-patch
+    bridges:
+    - br-eth0
+    - br-fw-admin
+    trunks:
+    - 0
+  roles:
+    management: br-mgmt
+    storage: br-storage
+    ex: br-ex
+    mesh: br-mgmt
+    fw-admin: br-fw-admin
+  interfaces:
+    eth4:
+      L2:
+        vlan_splinters: 'off'
+    eth3:
+      L2:
+        vlan_splinters: 'off'
+    eth2:
+      L2:
+        vlan_splinters: 'off'
+    eth1:
+      L2:
+        vlan_splinters: 'off'
+    eth0:
+      L2:
+        vlan_splinters: 'off'
+  version: '1.0'
+  provider: ovs
+  endpoints:
+    br-fw-admin:
+      IP:
+      - 10.108.21.3/24
+    br-storage:
+      IP:
+      - 10.108.29.3/24
+    br-mgmt:
+      IP:
+      - 10.108.25.3/24
+    br-ex:
+      IP:
+      - 10.108.23.3/24
+      gateway: 10.108.23.1
+heat:
+  db_password: GfHDrI3K
+  user_password: 8GO9tI4G
+  enabled: true
+  rabbit_password: nHYfJaRs
+storage_network_range: 10.108.29.0/24
+start_guests_on_host_boot: true
+rabbit:
+  password: 3WMqinc5
+ceilometer:
+  db_password: C83oc4H6
+  user_password: 8eWgqoPh
+  metering_secret: kYzn9v5q
+  enabled: false
+management_network_range: 10.108.25.0/24
+nodes:
+- storage_netmask: 255.255.255.0
+  uid: '1'
+  public_address: 10.108.23.2
+  internal_netmask: 255.255.255.0
+  fqdn: node-1.test.domain.local
+  role: controller
+  public_netmask: 255.255.255.0
+  internal_address: 10.108.25.2
+  storage_address: 10.108.29.2
+  name: node-1
+- storage_netmask: 255.255.255.0
+  uid: '3'
+  public_address: 10.108.23.3
+  internal_netmask: 255.255.255.0
+  fqdn: node-3.test.domain.local
+  role: compute
+  public_netmask: 255.255.255.0
+  internal_address: 10.108.25.3
+  storage_address: 10.108.29.3
+  name: node-3
+base_syslog:
+  syslog_port: '514'
+  syslog_server: 10.108.21.2
+test_vm_image:
+  os_name: cirros
+  img_path: "/opt/vm/cirros-x86_64-disk.img"
+  container_format: bare
+  min_ram: 64
+  disk_format: qcow2
+  glance_properties: '--property murano_image_info=''{"title": "Murano Demo", "type":
+    "cirros.demo"}'''
+  img_name: TestVM
+  public: 'true'
+auth_key: ''
+access:
+  metadata:
+    weight: 10
+    label: Access
+  password: admin
+  email: admin@example.org
+  tenant: admin
+  user: admin
+fqdn: node-3.test.domain.local
+auto_assign_floating_ip: false
+compute_scheduler_driver: nova.scheduler.filter_scheduler.FilterScheduler
+deployment_mode: multinode
+debug: true
+cobbler:
+  profile: centos-x86_64
+deployment_id: 1
+fuel_version: '5.1'
