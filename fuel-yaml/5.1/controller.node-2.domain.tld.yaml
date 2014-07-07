@@ -70,7 +70,7 @@ mysql:
 cobbler: 
   profile: centos-x86_64
 ceilometer: 
-  enabled: false
+  enabled: true
   db_password: UVwMvGTN
   metering_secret: Q1z4Q3Zm
   user_password: 34thWH4P

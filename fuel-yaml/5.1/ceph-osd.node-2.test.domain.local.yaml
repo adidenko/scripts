@@ -147,7 +147,7 @@ murano:
 swift: 
   user_password: d4FbJRMF
 ceilometer: 
-  enabled: false
+  enabled: true
   metering_secret: njcAjA0r
   db_password: UjajIkss
   user_password: v5FdO6Fn

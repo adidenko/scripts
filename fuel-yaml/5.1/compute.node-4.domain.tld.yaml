@@ -226,7 +226,7 @@ metadata:
   label: Common
   weight: 30
 ceilometer: 
-  enabled: false
+  enabled: true
   db_password: UVwMvGTN
   user_password: 34thWH4P
   metering_secret: Q1z4Q3Zm

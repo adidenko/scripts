@@ -241,7 +241,7 @@ ceilometer:
   db_password: C83oc4H6
   user_password: 8eWgqoPh
   metering_secret: kYzn9v5q
-  enabled: false
+  enabled: true
 management_network_range: 10.108.25.0/24
 nodes:
 - storage_netmask: 255.255.255.0

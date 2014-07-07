@@ -213,7 +213,7 @@ dns_nameservers:
 - 8.8.8.8
 management_network_range: 10.108.2.0/24
 ceilometer: 
-  enabled: false
+  enabled: true
   db_password: UjajIkss
   metering_secret: njcAjA0r
   user_password: v5FdO6Fn

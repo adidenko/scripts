@@ -7,7 +7,7 @@ deployment_id: 1
 storage_network_range: 192.168.1.0/24
 status: discover
 ceilometer: 
-  enabled: false
+  enabled: true
   metering_secret: Q1z4Q3Zm
   user_password: 34thWH4P
   db_password: UVwMvGTN

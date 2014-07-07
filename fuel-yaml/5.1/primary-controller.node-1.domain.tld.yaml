@@ -95,7 +95,7 @@ ceilometer:
   metering_secret: Q1z4Q3Zm
   user_password: 34thWH4P
   db_password: UVwMvGTN
-  enabled: false
+  enabled: true
 online: true
 master_ip: 10.20.0.2
 public_vip: 172.16.0.2
