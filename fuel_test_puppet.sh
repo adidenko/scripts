@@ -2,20 +2,20 @@
 
 YAML_URL_BASE="https://raw.githubusercontent.com/adidenko/scripts/master/fuel-yaml/5.1"
 YAMLS="
-ha_neut_vlan_cei.compute
-ha_neut_vlan_cei.controller
-ha_neut_vlan_cei.primary-controller
-ha_neut_vlan_sah_mur_cei.cinder
-ha_neut_vlan_sah_mur_cei.compute
-ha_neut_vlan_sah_mur_cei.controller
-ha_neut_vlan_sah_mur_cei.primary-controller
-simple_neut_gre_ceph_sah_mur_cei.ceph-osd
-simple_neut_gre_ceph_sah_mur_cei.compute
-simple_neut_gre_ceph_sah_mur_cei.controller
-simple_neut_gre_ceph_sah_mur_cei.primary-mongo
-simple_nova_flat_cei.cinder
-simple_nova_flat_cei.compute
-simple_nova_flat_cei.controller
+ha_neut_vlan_cei.compute.yaml
+ha_neut_vlan_cei.controller.yaml
+ha_neut_vlan_cei.primary-controller.yaml
+ha_neut_vlan_sah_mur_cei.cinder.yaml
+ha_neut_vlan_sah_mur_cei.compute.yaml
+ha_neut_vlan_sah_mur_cei.controller.yaml
+ha_neut_vlan_sah_mur_cei.primary-controller.yaml
+simple_neut_gre_ceph_sah_mur_cei.ceph-osd.yaml
+simple_neut_gre_ceph_sah_mur_cei.compute.yaml
+simple_neut_gre_ceph_sah_mur_cei.controller.yaml
+simple_neut_gre_ceph_sah_mur_cei.primary-mongo.yaml
+simple_nova_flat_cei.cinder.yaml
+simple_nova_flat_cei.compute.yaml
+simple_nova_flat_cei.controller.yaml
 "
 
 echo
