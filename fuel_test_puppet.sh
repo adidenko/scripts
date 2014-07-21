@@ -2,15 +2,20 @@
 
 YAML_URL_BASE="https://raw.githubusercontent.com/adidenko/scripts/master/fuel-yaml/5.1"
 YAMLS="
-ceph-osd.node-2.test.domain.local.yaml
-cinder.node-5.domain.tld.yaml
-comp-cinder-ceil.node-1.test.domain.local.yaml
-compute.node-4.test.domain.local.yaml
-controller.ceph.node-3.test.domain.local.yaml
-controller.node-3.test.domain.local
-pr.compute.node-3.test.domain.local.yaml
-pr.controller.node-1.test.domain.local.yaml
-primary-controller.node-1.test.domain.local.yaml
+ha_neut_vlan_cei.compute
+ha_neut_vlan_cei.controller
+ha_neut_vlan_cei.primary-controller
+ha_neut_vlan_sah_mur_cei.cinder
+ha_neut_vlan_sah_mur_cei.compute
+ha_neut_vlan_sah_mur_cei.controller
+ha_neut_vlan_sah_mur_cei.primary-controller
+simple_neut_gre_ceph_sah_mur_cei.ceph-osd
+simple_neut_gre_ceph_sah_mur_cei.compute
+simple_neut_gre_ceph_sah_mur_cei.controller
+simple_neut_gre_ceph_sah_mur_cei.primary-mongo
+simple_nova_flat_cei.cinder
+simple_nova_flat_cei.compute
+simple_nova_flat_cei.controller
 "
 
 echo
