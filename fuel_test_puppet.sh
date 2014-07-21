@@ -4,13 +4,13 @@ YAML_URL_BASE="https://raw.githubusercontent.com/adidenko/scripts/master/fuel-ya
 YAMLS="
 ceph-osd.node-2.test.domain.local.yaml
 cinder.node-5.domain.tld.yaml
-compute.node-4.domain.tld.yaml
-controller.ceph.node-3.test.domain.local.yaml
-controller.node-2.domain.tld.yaml
-primary-controller.node-1.domain.tld.yaml
-pr.controller.node-1.test.domain.local.yaml
-pr.compute.node-3.test.domain.local.yaml
 comp-cinder-ceil.node-1.test.domain.local.yaml
+compute.node-4.test.domain.local.yaml
+controller.ceph.node-3.test.domain.local.yaml
+controller.node-3.test.domain.local
+pr.compute.node-3.test.domain.local.yaml
+pr.controller.node-1.test.domain.local.yaml
+primary-controller.node-1.test.domain.local.yaml
 "
 
 echo
