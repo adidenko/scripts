@@ -1,5 +1,4 @@
 #!/bin/bash
-export PATH="/home/adidenko/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games"
 me=`basename $0`
 
 lock="/tmp/$me.lock"
