@@ -47,9 +47,9 @@ if ! [ -f "$SITE_PP" ] ; then
 fi
 
 echo
-printf "%-60s%-10s %s\n" "YAML EXAMPLE" "RESULT" "LOGFILE"
+printf "%-70s%-10s %s\n" "YAML EXAMPLE" "RESULT" "LOGFILE"
 for YAML in $YAMLS ; do
-    printf "%-60s" "Running $YAML ..."
+    printf "%-70s" "Running $YAML ..."
     curl -s "$YAML_URL_BASE/$YAML" > /etc/fuel/astute.yaml
     ( FACTER_hostname=`awk '/^fqdn:/{print $2}' /etc/fuel/astute.yaml | cut -d. -f1` puppet apply -d -v --modulepath $MODULE_PATH --noop $SITE_PP ; echo Exit code: $? ; echo ) &> /tmp/modules/puppet-apply.${YAML}.log
     if grep -q 'Exit code: 0' /tmp/modules/puppet-apply.${YAML}.log ; then
