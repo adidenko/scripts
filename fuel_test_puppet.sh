@@ -11,7 +11,7 @@ if [ -z "$MODULE_PATH" ] ; then
 fi
 
 if [ -z "$YAML_URL_BASE"] ; then
-  YAML_URL_BASE="https://raw.githubusercontent.com/adidenko/scripts/master/fuel-yaml/5.1"
+  YAML_URL_BASE="https://raw.githubusercontent.com/adidenko/scripts/master/fuel-yaml/6.0"
 fi
 
 if [ -z "$YAMLS" ] ; then

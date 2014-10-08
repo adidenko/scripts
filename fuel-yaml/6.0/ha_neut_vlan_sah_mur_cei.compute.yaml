@@ -1,0 +1,397 @@
+access:
+  email: admin@example.org
+  metadata:
+    label: Access
+    weight: 10
+  password: admin
+  tenant: admin
+  user: admin
+auth_key: ''
+auto_assign_floating_ip: false
+base_syslog:
+  syslog_port: '514'
+  syslog_server: 10.108.0.2
+ceilometer:
+  db_password: RrNDTSV7
+  enabled: true
+  metering_secret: zjzTMzQx
+  user_password: SaYwL0f1
+cinder:
+  db_password: l1dQg37M
+  user_password: Do0UsZFE
+cobbler:
+  profile: centos-x86_64
+compute_scheduler_driver: nova.scheduler.filter_scheduler.FilterScheduler
+corosync:
+  group: 226.94.1.1
+  metadata:
+    label: Corosync
+    restrictions:
+    - action: hide
+      condition: 'true'
+    weight: 50
+  port: '12000'
+  verified: false
+debug: true
+deployment_id: 10
+deployment_mode: ha_compact
+fail_if_error: false
+fqdn: node-26.test.domain.local
+fuel_version: '6.0'
+glance:
+  db_password: 73E9kPKl
+  image_cache_max_size: '5368709120'
+  user_password: ujT552YX
+heat:
+  db_password: dVwsnTrO
+  enabled: true
+  rabbit_password: RO5cBf06
+  user_password: vKSgHb3C
+kernel_params:
+  kernel: console=ttyS0,9600 console=tty0 biosdevname=0 crashkernel=none rootdelay=90
+    nomodeset ipmi_si.tryacpi=0 ipmi_si.trydmi=0 ipmi_si.trydefaults=0
+  metadata:
+    label: Kernel parameters
+    weight: 40
+keystone:
+  admin_token: soHI9zbb
+  db_password: wBgeoQIs
+last_controller: node-31
+libvirt_type: kvm
+management_network_range: 192.168.0.0/24
+management_vip: 192.168.0.7
+master_ip: 10.108.0.2
+metadata:
+  label: Common
+  weight: 30
+mp:
+- point: '1'
+  weight: '1'
+- point: '2'
+  weight: '2'
+murano:
+  db_password: DsfuB3h4
+  enabled: true
+  rabbit_password: Lz6QlKki
+  user_password: gufDSGFw
+mysql:
+  root_password: jTMzqffv
+network_scheme:
+  endpoints:
+    br-fw-admin:
+      IP:
+      - 10.108.0.4/24
+      gateway: 10.108.0.2
+    br-mgmt:
+      IP:
+      - 192.168.0.3/24
+    br-prv:
+      IP: none
+    br-storage:
+      IP:
+      - 192.168.1.3/24
+  interfaces:
+    eth0:
+      L2:
+        vlan_splinters: 'off'
+    eth1:
+      L2:
+        vlan_splinters: 'off'
+    eth2:
+      L2:
+        vlan_splinters: 'off'
+    eth3:
+      L2:
+        vlan_splinters: 'off'
+    eth4:
+      L2:
+        vlan_splinters: 'off'
+  provider: ovs
+  roles:
+    fw-admin: br-fw-admin
+    management: br-mgmt
+    private: br-prv
+    storage: br-storage
+  transformations:
+  - action: add-br
+    name: br-eth0
+  - action: add-port
+    bridge: br-eth0
+    name: eth0
+  - action: add-br
+    name: br-eth1
+  - action: add-port
+    bridge: br-eth1
+    name: eth1
+  - action: add-br
+    name: br-eth2
+  - action: add-port
+    bridge: br-eth2
+    name: eth2
+  - action: add-br
+    name: br-eth3
+  - action: add-port
+    bridge: br-eth3
+    name: eth3
+  - action: add-br
+    name: br-eth4
+  - action: add-port
+    bridge: br-eth4
+    name: eth4
+  - action: add-br
+    name: br-mgmt
+  - action: add-br
+    name: br-storage
+  - action: add-br
+    name: br-fw-admin
+  - action: add-patch
+    bridges:
+    - br-eth0
+    - br-storage
+    tags:
+    - 472
+    - 0
+  - action: add-patch
+    bridges:
+    - br-eth0
+    - br-mgmt
+    tags:
+    - 471
+    - 0
+  - action: add-patch
+    bridges:
+    - br-eth1
+    - br-fw-admin
+    trunks:
+    - 0
+  - action: add-br
+    name: br-prv
+  - action: add-patch
+    bridges:
+    - br-eth1
+    - br-prv
+  version: '1.0'
+neutron_mellanox:
+  metadata:
+    enabled: true
+    label: Mellanox Neutron components
+    toggleable: false
+    weight: 50
+  plugin: disabled
+  vf_num: '16'
+nodes:
+- fqdn: node-25.test.domain.local
+  internal_address: 192.168.0.2
+  internal_netmask: 255.255.255.0
+  name: node-25
+  role: cinder
+  storage_address: 192.168.1.2
+  storage_netmask: 255.255.255.0
+  swift_zone: '25'
+  uid: '25'
+- fqdn: node-26.test.domain.local
+  internal_address: 192.168.0.3
+  internal_netmask: 255.255.255.0
+  name: node-26
+  role: compute
+  storage_address: 192.168.1.3
+  storage_netmask: 255.255.255.0
+  swift_zone: '26'
+  uid: '26'
+- fqdn: node-29.test.domain.local
+  internal_address: 192.168.0.4
+  internal_netmask: 255.255.255.0
+  name: node-29
+  public_address: 10.16.122.2
+  public_netmask: 255.255.255.0
+  role: primary-controller
+  storage_address: 192.168.1.4
+  storage_netmask: 255.255.255.0
+  swift_zone: '29'
+  uid: '29'
+- fqdn: node-30.test.domain.local
+  internal_address: 192.168.0.5
+  internal_netmask: 255.255.255.0
+  name: node-30
+  public_address: 10.16.122.3
+  public_netmask: 255.255.255.0
+  role: controller
+  storage_address: 192.168.1.5
+  storage_netmask: 255.255.255.0
+  swift_zone: '30'
+  uid: '30'
+- fqdn: node-31.test.domain.local
+  internal_address: 192.168.0.6
+  internal_netmask: 255.255.255.0
+  name: node-31
+  public_address: 10.16.122.4
+  public_netmask: 255.255.255.0
+  role: controller
+  storage_address: 192.168.1.6
+  storage_netmask: 255.255.255.0
+  swift_zone: '31'
+  uid: '31'
+nova:
+  db_password: H0E8ntNZ
+  state_path: /var/lib/nova
+  user_password: QVgnArMN
+nova_quota: false
+nsx_plugin:
+  connector_type: stt
+  l3_gw_service_uuid: ''
+  metadata:
+    enabled: false
+    label: VMware NSX
+    restrictions:
+    - action: hide
+      condition: cluster:net_provider != 'neutron' or networking_parameters:net_l23_provider?
+        != 'nsx'
+    weight: 20
+  nsx_controllers: ''
+  nsx_password: ''
+  nsx_username: admin
+  packages_url: ''
+  transport_zone_uuid: ''
+online: true
+openstack_version: 2014.2-6.0
+openstack_version_prev: null
+priority: 700
+public_network_assignment:
+  assign_to_all_nodes: false
+  metadata:
+    label: Public network assignment
+    restrictions:
+    - action: hide
+      condition: cluster:net_provider != 'neutron'
+    weight: 50
+public_vip: 10.16.122.5
+puppet_manifests_source: rsync://10.108.0.2:/puppet/manifests/
+puppet_modules_source: rsync://10.108.0.2:/puppet/modules/
+quantum: true
+quantum_settings:
+  L2:
+    base_mac: fa:16:3e:00:00:00
+    phys_nets:
+      physnet2:
+        bridge: br-prv
+        vlan_range: 475:479
+    segmentation_type: vlan
+  L3:
+    use_namespaces: true
+  database:
+    passwd: WdiAvJqx
+  keystone:
+    admin_password: i8etpRAr
+  metadata:
+    metadata_proxy_shared_secret: y5oQlvjF
+  predefined_networks:
+    net04:
+      L2:
+        network_type: vlan
+        physnet: physnet2
+        router_ext: false
+        segment_id: null
+      L3:
+        enable_dhcp: true
+        floating: null
+        gateway: 192.168.111.1
+        nameservers:
+        - 8.8.4.4
+        - 8.8.8.8
+        subnet: 192.168.111.0/24
+      shared: false
+      tenant: admin
+    net04_ext:
+      L2:
+        network_type: local
+        physnet: null
+        router_ext: true
+        segment_id: null
+      L3:
+        enable_dhcp: false
+        floating: 10.16.122.128:10.16.122.254
+        gateway: 10.16.122.1
+        nameservers: []
+        subnet: 10.16.122.0/24
+      shared: false
+      tenant: admin
+rabbit:
+  password: DgQXcmpD
+repo_metadata:
+  nailgun: http://10.108.0.2:8080/centos/fuelweb/x86_64
+resume_guests_state_on_host_boot: true
+role: compute
+sahara:
+  db_password: XxWigIi9
+  enabled: true
+  user_password: EilBTaJf
+status: discover
+storage:
+  ephemeral_ceph: false
+  images_ceph: false
+  iser: false
+  metadata:
+    label: Storage
+    weight: 60
+  objects_ceph: false
+  osd_pool_size: '2'
+  pg_num: 128
+  volumes_ceph: false
+  volumes_lvm: true
+  volumes_vmdk: false
+storage_network_range: 192.168.1.0/24
+swift:
+  user_password: ykgme8Xm
+syslog:
+  metadata:
+    label: Syslog
+    weight: 50
+  syslog_port: '514'
+  syslog_server: ''
+  syslog_transport: tcp
+test_vm_image:
+  container_format: bare
+  disk_format: qcow2
+  glance_properties: '--property murano_image_info=''{"title": "Murano Demo", "type":
+    "cirros.demo"}'''
+  img_name: TestVM
+  img_path: /opt/vm/cirros-x86_64-disk.img
+  min_ram: 64
+  os_name: cirros
+  public: 'true'
+uid: '26'
+use_cinder: true
+use_cow_images: true
+vcenter:
+  cluster: ''
+  host_ip: ''
+  metadata:
+    label: vCenter
+    restrictions:
+    - action: hide
+      condition: settings:common.libvirt_type.value != 'vcenter'
+    weight: 20
+  use_vcenter: true
+  vc_password: ''
+  vc_user: ''
+vlan_splinters:
+  metadata:
+    enabled: false
+    label: VLAN Splinters
+    restrictions:
+    - action: hide
+      condition: cluster:net_provider != 'neutron'
+    toggleable: true
+    weight: 50
+  vswitch: disabled
+zabbix:
+  db_password: 6gR0ExZc
+  db_root_password: XsxqVbMi
+  metadata:
+    label: Zabbix Access
+    restrictions:
+    - action: hide
+      condition: not ('experimental' in version:feature_groups)
+    weight: 70
+  password: zabbix
+  username: admin
