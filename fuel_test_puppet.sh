@@ -52,7 +52,7 @@ for YAML in $YAMLS ; do
     printf "%-70s" "Running $YAML ..."
     curl -s "$YAML_URL_BASE/$YAML" > /etc/fuel/astute.yaml
     ( FACTER_hostname=`awk '/^fqdn:/{print $2}' /etc/fuel/astute.yaml | cut -d. -f1` puppet apply -d -v --modulepath $MODULE_PATH --noop $SITE_PP ; echo Exit code: $? ; echo ) &> /tmp/modules/puppet-apply.${YAML}.log
-    if egrep -q 'Exit code: 0|Error: Could not apply complete catalog' /tmp/modules/puppet-apply.${YAML}.log ; then
+    if grep -q 'Exit code: 0' /tmp/modules/puppet-apply.${YAML}.log && ! grep -q 'Error: Could not apply complete catalog' /tmp/modules/puppet-apply.${YAML}.log ; then
         printf "%-10s %s\n" "OK" "/tmp/modules/puppet-apply.${YAML}.log"
     else
         printf "%-10s %s\n" "FAILED" "/tmp/modules/puppet-apply.${YAML}.log"
