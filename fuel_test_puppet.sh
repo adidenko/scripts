@@ -2,6 +2,10 @@
 
 mkdir -p /tmp/modules
 
+if [ -z "$FUEL_VER" ] ; then
+  FUEL_VER="6.0"
+fi
+
 if [ -z "$SITE_PP"] ; then
   SITE_PP="/zkskksjkdjd/dkldjdkjdkd/dkdkdjdkjd/dkdjdkjd"
 fi
@@ -11,7 +15,7 @@ if [ -z "$MODULE_PATH" ] ; then
 fi
 
 if [ -z "$YAML_URL_BASE"] ; then
-  YAML_URL_BASE="https://raw.githubusercontent.com/adidenko/scripts/master/fuel-yaml/6.0"
+  YAML_URL_BASE="https://raw.githubusercontent.com/adidenko/scripts/master/fuel-yaml/$FUEL_VER"
 fi
 
 if [ -z "$YAMLS" ] ; then
