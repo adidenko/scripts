@@ -1,4 +1,7 @@
 #!/bin/bash
+# export PYTHONPATH="./pylibs:./05_setup/environments"
+# export FUEL_MASTER_NODE=10.108.0.2
+
 set -e
 
 envs="
