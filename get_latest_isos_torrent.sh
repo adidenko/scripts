@@ -9,6 +9,7 @@ suff="DOWNLOADING"
 fuel_urls='
 http://jenkins-product.srt.mirantis.net:8080/job/fuel_5_1_iso/lastStableBuild
 http://jenkins-product.srt.mirantis.net:8080/view/6.0/job/6.0.all/lastStableBuild/
+http://jenkins-product.srt.mirantis.net:8080/view/6.1/job/6.1.all/lastStableBuild/
 '
 
 if [ -f "$lock" ] ; then
