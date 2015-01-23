@@ -21,7 +21,7 @@ function sync_node {
   fi
 }
 
-for i in `fuel node --env $env_id | grep provisioned | awk '{print $1":"$10}'`; do
+for i in `fuel node --env $env_id | grep True | awk '{print $1":"$10}'`; do
   sync_node $i
 done
 
