@@ -131,11 +131,11 @@ class MakeGraph:
                 'groups': groups,
             }
 
-        # clen the data dictionary
+        # clean the data dictionary
         cleaned_data = {}
         for node in self.data.iterkeys():
             # filter out stage nodes
-            if self.node_type(node) == 'stage':
+            if self.node_type(node) == 'stage' or self.node_type(node) == 'group':
                 continue
             if group not in self.data[node].get('groups', []):
                 continue
@@ -238,7 +238,7 @@ def make_graph(tasks_yaml = "./osnailyfacter/modular", out_name = "tasks_graph",
     print("Found the following tasks:")
     for root, dirs, files in os.walk(tasks_yaml):
         for file in files:
-            if file.endswith(".yaml"):
+            if file.endswith("tasks.yaml"):
                  print("\t%s" % os.path.join(root, file))
                  with open (os.path.join(root, file), "r") as myfile:
                      DEPLOYMENT_CURRENT += myfile.read()
