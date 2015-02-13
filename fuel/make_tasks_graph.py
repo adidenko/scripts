@@ -3,6 +3,8 @@
 import yaml
 import pygraphviz as pgv
 import argparse
+import glob
+import os
 
 class MakeGraph:
     def __init__(self):
@@ -108,7 +110,7 @@ class MakeGraph:
     # data functions
 
     # convert array data to hash data
-    def convert_data(self):
+    def convert_data(self, group):
         # form the initial data structure
         for node in self.workbook:
             if not type(node) is dict:
@@ -120,11 +122,13 @@ class MakeGraph:
             requires = node.get('requires', [])
             required_for = node.get('required_for', [])
             role = node.get('role', [])
+            groups = node.get('groups', [])
             self._data[id] = {
                 'id': id,
                 'requires': requires,
-                'required_for': required_for + role,
+                'required_for': required_for,
                 'type': node_type,
+                'groups': groups,
             }
 
         # clen the data dictionary
@@ -133,7 +137,8 @@ class MakeGraph:
             # filter out stage nodes
             if self.node_type(node) == 'stage':
                 continue
-
+            if group not in self.data[node].get('groups', []):
+                continue
             # node structure
             id = self.data[node].get('id', None)
             node_type = self.data[node].get('type', None)
@@ -180,8 +185,8 @@ class MakeGraph:
         return self._data
 
     # build graph structure using data
-    def build_graph(self):
-        self.convert_data()
+    def build_graph(self, group):
+        self.convert_data(group)
         for id, node in self.data.iteritems():
             self.graph_node(id)
             for link in node['links']:
@@ -228,22 +233,34 @@ class MakeGraph:
     def graph(self):
         return self._graph
 
-def make_graph(tasks_yaml = "./osnailyfacter/modular/tasks.yaml", out_name = "tasks_graph", write_dot = False):
-    with open (tasks_yaml, "r") as myfile:
-        DEPLOYMENT_CURRENT = myfile.read()
+def make_graph(tasks_yaml = "./osnailyfacter/modular", out_name = "tasks_graph", write_dot = False, group = 'primary-controller', debug = False):
+    DEPLOYMENT_CURRENT = ""
+    print("Found the following tasks:")
+    for root, dirs, files in os.walk(tasks_yaml):
+        for file in files:
+            if file.endswith(".yaml"):
+                 print("\t%s" % os.path.join(root, file))
+                 with open (os.path.join(root, file), "r") as myfile:
+                     DEPLOYMENT_CURRENT += myfile.read()
+
+    print("\nBuilding graph for tasks group (node role): %s\n" % group)
     mg = MakeGraph()
-    mg.options['debug'] = True
+    mg.options['debug'] = debug
     mg.load_yaml(DEPLOYMENT_CURRENT)
-    mg.build_graph()
+    mg.build_graph(group)
     if write_dot:
+        print("Saving dot file to: %s.dot" % out_name)
         mg.write_dot('%s.dot' % out_name)
+    print("Saving image to: %s.png\n" % out_name)
     mg.write_image('%s.png' % out_name)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Create Fuel tasks graph files.')
-    parser.add_argument("tasks_file", type=str, help="Fuel tasks.yaml file with tasks description")
+    parser.add_argument("tasks_directory", type=str, help="Directory with Fuel tasks.yaml files that contain tasks description")
     parser.add_argument("-wd", "--write-dot", help="Write .dot graph file", action="store_true")
+    parser.add_argument("-d", "--debug", help="Print debug info", action="store_true")
     parser.add_argument("-of", "--out-name", help="Output file name to be used (without .png)", default='tasks_graph')
+    parser.add_argument("-g", "--group", help="Tasks group name to build graph for. For example 'compute'", default='primary-controller')
     args = parser.parse_args()
 
-    make_graph(args.tasks_file, args.out_name, args.write_dot)
+    make_graph(args.tasks_directory, args.out_name, args.write_dot, args.group, args.debug)
