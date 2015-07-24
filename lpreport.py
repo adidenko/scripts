@@ -43,11 +43,11 @@ for group in users:
                               (bug.status == "Fix Released" and str(task.date_fix_released) > start_date):
                           bugs_fixed += 1
                           total_fixed += 1
-                          print "Fixed:  %s" % bug.web_link
+                          #print "Fixed:  %s" % bug.web_link
                       if bug.status in ["Invalid", "Won't Fix"]:
                           bugs_closed += 1
                           total_closed += 1
-                          print "Closed: %s" % bug.web_link
+                          #print "Closed: %s" % bug.web_link
 
         print "Bugs fixed:  %s" % bugs_fixed
         print "Bugs closed: %s" % bugs_closed

@@ -52,7 +52,7 @@ for group in users:
                   if change['status'] == 'MERGED':
                       fixes_merged += 1
                       total_merged += 1
-                      if change['created'] > str(one_week_ago_date):
+                      if change['updated'] > str(one_week_ago_date):
                           fixes_merged_last_week += 1
                           total_merged_last_week += 1
                       elif change['created'] > str(two_weeks_ago_date):
