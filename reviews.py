@@ -2,13 +2,13 @@ from pygerrit.rest import GerritRestAPI
 import datetime
 
 start_date = '2015-06-22'
-report_date = '2015-07-18'
+report_date = '2015-07-25'
 branch = 'master'
 
 users = {}
 users['fuel'] = ['adidenko', 'akislitsky', 'rprikhodchenko', 'agordeev',
                  'omolchanov', 'ddmitriev', 'dilyin', 'vsharshov']
-users['service'] = ['mgrygoriev', 'sflorczak']
+users['service'] = ['mgrygoriev', 'sflorczak', 'pstefanski']
 users['partner'] = ['aarzhanov', 'igajsin']
 
 ##########################
@@ -69,16 +69,16 @@ for group in users:
                           total_open_prev_week += 1
         print "Fixes open:               %s" % fixes_open
         print "Fixes merged:             %s" % fixes_merged
-        print "Fixes open (last week):   %s" % fixes_open_last_week
-        print "Fixes merged (last week): %s" % fixes_merged_last_week
-        print "Fixes open (prev week):   %s" % fixes_open_prev_week
-        print "Fixes merged (prev week): %s" % fixes_merged_prev_week
+        print "Fixes open (this week):   %s" % fixes_open_last_week
+        print "Fixes merged (this week): %s" % fixes_merged_last_week
+        print "Fixes open (last week):   %s" % fixes_open_prev_week
+        print "Fixes merged (last week): %s" % fixes_merged_prev_week
 
 print "\n#####################"
 print "Total open:               %s" % total_open
 print "Total merged:             %s" % total_merged
-print "Total open (last week):   %s" % total_open_last_week
-print "Total merged (last week): %s" % total_merged_last_week
-print "Total open (prev week):   %s" % total_open_prev_week
-print "Total merged (prev week): %s" % total_merged_prev_week
+print "Total open (this week):   %s" % total_open_last_week
+print "Total merged (this week): %s" % total_merged_last_week
+print "Total open (last week):   %s" % total_open_prev_week
+print "Total merged (last week): %s" % total_merged_prev_week
 
