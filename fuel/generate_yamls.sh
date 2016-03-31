@@ -38,7 +38,6 @@ function enable_ironic {
   fuel env --attributes --env $1 --upload
 }
 
-
 function list_free_nodes {
   fuel nodes 2>/dev/null | grep discover | grep None | awk '{print $1}'
 }
@@ -73,7 +72,6 @@ function generate_yamls {
 
   for id in `list_free_nodes` ; do
     if ! [ -z "${roles[0]}" ] ; then
-      #echo $id
       fuel --env $env node set --node $id --role ${roles[0]}
       roles=("${roles[@]:1}")
       sleep 1
@@ -98,7 +96,7 @@ clean_env 'test_neutron_vlan'
 
 # Neutron vlan addons
 fuel env --create --name test_neutron_vlan --rel 2 --net vlan
-generate_yamls 'test_neutron_vlan' 'neut_vlan.murano.sahara.ceil' 'controller controller compute mongo mongo cinder' 'primary-controller controller compute primary-mongo mongo cinder'
+generate_yamls 'test_neutron_vlan' 'neut_vlan.murano.sahara.ceil' 'controller controller compute mongo mongo cinder cinder-block-device' 'primary-controller controller compute primary-mongo mongo cinder cinder-block-device'
 clean_env 'test_neutron_vlan'
 
 # Neutron tun addons + ceph
