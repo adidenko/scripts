@@ -10,7 +10,9 @@ function enable_ceph {
   attr["editable"]["storage"]["images_ceph"]["value"] = true
   attr["editable"]["storage"]["objects_ceph"]["value"] = true
   attr["editable"]["storage"]["volumes_ceph"]["value"] = true
+  attr["editable"]["storage"]["ephemeral_ceph"]["value"] = true
   attr["editable"]["storage"]["volumes_lvm"]["value"] = false
+  attr["editable"]["storage"]["osd_pool_size"]["value"] = "2"
   File.open(ARGV[0], "w").write(attr.to_yaml)' "cluster_$1/attributes.yaml"
   fuel env --attributes --env $1 --upload
   rm -rf "cluster_$1"
@@ -26,6 +28,16 @@ function enable_murano_sahara_ceilometer {
   File.open(ARGV[0], "w").write(attr.to_yaml)' "cluster_$1/attributes.yaml"
   fuel env --attributes --env $1 --upload
 }
+
+function enable_ironic {
+  fuel env --attributes --env $1 --download
+  ruby -ryaml -e '
+  attr = YAML.load(File.read(ARGV[0]))
+  attr["editable"]["additional_components"]["ironic"]["value"] = true
+  File.open(ARGV[0], "w").write(attr.to_yaml)' "cluster_$1/attributes.yaml"
+  fuel env --attributes --env $1 --upload
+}
+
 
 function list_free_nodes {
   fuel nodes 2>/dev/null | grep discover | grep None | awk '{print $1}'
@@ -81,7 +93,7 @@ function clean_env {
 
 # Neutron vlan ceph
 fuel env --create --name test_neutron_vlan --rel 2 --net vlan
-generate_yamls 'test_neutron_vlan' 'neut_vlan.ceph' 'controller compute ceph-osd' 'primary-controller compute ceph-osd'
+generate_yamls 'test_neutron_vlan' 'neut_vlan.ceph' 'controller controller controller compute ceph-osd ceph-osd' 'primary-controller compute ceph-osd'
 clean_env 'test_neutron_vlan'
 
 # Neutron vlan addons
@@ -91,6 +103,10 @@ clean_env 'test_neutron_vlan'
 
 # Neutron tun addons + ceph
 fuel env --create --name test_neutron_tun --rel 2 --net tun
-generate_yamls 'test_neutron_tun' 'neut_tun.ceph.murano.sahara.ceil' 'controller controller compute ceph-osd mongo mongo' 'primary-controller controller compute ceph-osd primary-mongo mongo'
+generate_yamls 'test_neutron_tun' 'neut_tun.ceph.murano.sahara.ceil' 'controller controller compute ceph-osd ceph-osd mongo mongo' 'primary-controller controller compute ceph-osd primary-mongo mongo'
 clean_env 'test_neutron_tun'
 
+# Neutron tun ironic
+fuel env --create --name test_neutron_tun --rel 2 --net tun
+generate_yamls 'test_neutron_tun' 'neut_tun.ironic' 'controller ironic' 'primary-controller ironic'
+clean_env 'test_neutron_tun'
