@@ -38,6 +38,24 @@ function enable_ironic {
   fuel env --attributes --env $1 --upload
 }
 
+function enable_neutron_l3ha {
+  fuel env --attributes --env $1 --download
+  ruby -ryaml -e '
+  attr = YAML.load(File.read(ARGV[0]))
+  attr["editable"]["neutron_advanced_configuration"]["neutron_l3_ha"]["value"] = true
+  File.open(ARGV[0], "w").write(attr.to_yaml)' "cluster_$1/attributes.yaml"
+  fuel env --attributes --env $1 --upload
+}
+
+function enable_neutron_dvr {
+  fuel env --attributes --env $1 --download
+  ruby -ryaml -e '
+  attr = YAML.load(File.read(ARGV[0]))
+  attr["editable"]["neutron_advanced_configuration"]["neutron_dvr"]["value"] = true
+  File.open(ARGV[0], "w").write(attr.to_yaml)' "cluster_$1/attributes.yaml"
+  fuel env --attributes --env $1 --upload
+}
+
 function list_free_nodes {
   fuel nodes 2>/dev/null | grep discover | grep None | awk '{print $1}'
 }
@@ -69,6 +87,15 @@ function generate_yamls {
   if [ "${name/murano.sahara.ceil}" != "$name" ] ; then
     enable_murano_sahara_ceilometer $env
   fi
+  if [ "${name/ironic}" != "$name" ] ; then
+    enable_ironic $env
+  fi
+  if [ "${name/l3ha}" != "$name" ] ; then
+    enable_neutron_l3ha $env
+  fi
+  if [ "${name/dvr}" != "$name" ] ; then
+    enable_neutron_dvr $env
+  fi
 
   for id in `list_free_nodes` ; do
     if ! [ -z "${roles[0]}" ] ; then
@@ -99,6 +126,11 @@ fuel env --create --name test_neutron_vlan --rel 2 --net vlan
 generate_yamls 'test_neutron_vlan' 'neut_vlan.murano.sahara.ceil' 'controller controller compute mongo mongo cinder cinder-block-device' 'primary-controller controller compute primary-mongo mongo cinder cinder-block-device'
 clean_env 'test_neutron_vlan'
 
+# Neutron vlan neutron_dvr
+fuel env --create --name test_neutron_vlan --rel 2 --net vlan
+generate_yamls 'test_neutron_vlan' 'neut_vlan.dvr' 'controller controller controller' 'primary-controller'
+clean_env 'test_neutron_vlan'
+
 # Neutron tun addons + ceph
 fuel env --create --name test_neutron_tun --rel 2 --net tun
 generate_yamls 'test_neutron_tun' 'neut_tun.ceph.murano.sahara.ceil' 'controller controller compute ceph-osd ceph-osd mongo mongo' 'primary-controller controller compute ceph-osd primary-mongo mongo'
@@ -107,4 +139,9 @@ clean_env 'test_neutron_tun'
 # Neutron tun ironic
 fuel env --create --name test_neutron_tun --rel 2 --net tun
 generate_yamls 'test_neutron_tun' 'neut_tun.ironic' 'controller ironic' 'primary-controller ironic'
+clean_env 'test_neutron_tun'
+
+# Neutron tun neutron_l3ha
+fuel env --create --name test_neutron_tun --rel 2 --net tun
+generate_yamls 'test_neutron_tun' 'neut_tun.l3ha' 'controller controller controller' 'primary-controller'
 clean_env 'test_neutron_tun'
