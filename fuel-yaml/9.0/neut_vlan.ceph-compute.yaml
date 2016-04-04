@@ -8,18 +8,18 @@ access:
   tenant: admin
   user: admin
 aodh:
-  db_password: TDqzHyl365PUjTYZMXZVM2Bc
-  user_password: Liolkmz4NxA2J8tjcjW6O4zs
+  db_password: roGwmvZkZpiUmeRwbV9FV31T
+  user_password: Ztki8JegKN9RZqYX07BhOn6m
 auth_key: ''
 auto_assign_floating_ip: false
 base_syslog:
   syslog_port: '514'
   syslog_server: 10.110.0.2
 ceilometer:
-  db_password: tF6Kn88U3XMN7RWxZCzBdYt0
+  db_password: HuCgdtHBjCuXzMp3B70k5UjH
   enabled: false
-  metering_secret: Ucj4D0Z2mWz36Py6JfLdEjIS
-  user_password: 0JDtSns2kD98UUwD8QUkvnjA
+  metering_secret: EHF0991ZnNuziJbiifhvcHE5
+  user_password: 3hlZoNdg4NADq8wjHe13Wy6i
 cgroups:
   metadata:
     always_editable: true
@@ -30,9 +30,9 @@ cgroups:
       condition: 'true'
     weight: 90
 cinder:
-  db_password: 5Q3lNEfhTQHnjcdjr9f6VwZM
-  fixed_key: e97960cb94f2efcff8497f40e179846fbc2d8997d397280735a4946729b99cd0
-  user_password: JlvIGChH00xw4PRkirXfHRAw
+  db_password: U70P9NjaFapUb1QF67cJ8hNX
+  fixed_key: fe02d9b20f961890baf288b1cb3984091b561163b525e0595cfbae1864dc65ae
+  user_password: n79XBFzdGspz1uARx9D72bvI
 cobbler:
   profile: ubuntu_1404_x86_64
 corosync:
@@ -49,7 +49,7 @@ corosync:
 debug: false
 deployed_before:
   value: false
-deployment_id: 16
+deployment_id: 3
 deployment_mode: ha_compact
 dpdk: {}
 external_dns:
@@ -84,25 +84,27 @@ external_ntp:
   - 1.fuel.pool.ntp.org
   - 2.fuel.pool.ntp.org
 fail_if_error: false
-fqdn: node-70.test.domain.local
+fqdn: node-4.test.domain.local
 fuel_version: '9.0'
 glance:
-  db_password: sIC8EgpBfVJcc6qtrbiEcvss
+  db_password: m00flfHKlJQaPjrctAuP3BIE
   image_cache_max_size: '0'
-  user_password: 8djOcF5ZmqvhqpIUYxIyHDkw
+  user_password: AjYXiHisCcgpgIT6YYsGxh45
+glance_glare:
+  user_password: 9ErLlzsOVkTf55760NUPlm2k
 heat:
-  auth_encryption_key: 43fc4b80dff13b6c60cb3fa048bd0431
-  db_password: yv7UPZRz60h1aPXbS8xGjAMz
+  auth_encryption_key: b4674d758d0e969d89fe14c73d3fc2f3
+  db_password: orn9kFx01sjrz3Z4cENpW4Z1
   enabled: true
-  rabbit_password: esGaszAKF8lNomEWmkzgiyTg
-  user_password: bcRFzBlJ7iEYuAkkZCaRlRC7
+  rabbit_password: mAaOGH7iAFiNOfZUfUIfLx9r
+  user_password: qdEXYISx6AJYAujJ59CIbA2W
 horizon:
-  secret_key: 3e8d44bf2070b3893d33d3023a4a7fb54be024c6894b982b24dd8fdb73498cd2
+  secret_key: 57e9fc21b1db9f7f1c3f10776a8caf3e692d77c6adafa2de3728314ffe001d3f
 ironic:
-  db_password: OKxTDaOS41eqKFOJGRCIdF6I
+  db_password: 0vsxck2u04kqgyFSN8RQA1gy
   enabled: false
-  swift_tempurl_key: cuZpJVLNxeN8CWpbzQTLwstX
-  user_password: 0mEca9kEYq8kRqh833vBvn0v
+  swift_tempurl_key: 8ltTGNczfdHK0d10v7QYZU1G
+  user_password: qq9iafRfpZPXNqNetRuP2kVG
 kernel_params:
   kernel: console=tty0 net.ifnames=0 biosdevname=0 rootdelay=90 nomodeset
   metadata:
@@ -110,9 +112,9 @@ kernel_params:
     label: Kernel parameters
     weight: 60
 keystone:
-  admin_token: ZkzJDs3g6UK7e01aFW6KlN8v
-  db_password: pI0TxzWrbq3yH7M2HQ4o3l2q
-last_controller: node-72
+  admin_token: 4Y4hE0Z91Ed5U4PWdp4KOkVt
+  db_password: vKMSpAS4OcaQJgyEQ9nnDK1v
+last_controller: node-10
 libvirt_type: qemu
 management_network_range: 192.168.0.0/24
 master_ip: 10.110.0.2
@@ -127,15 +129,15 @@ mp:
 - point: '2'
   weight: '2'
 murano:
-  db_password: E6swNuTWSb8njbAIaJhLulK2
+  db_password: yFVzO5D9avGGJiPM0aRPGyXy
   enabled: false
-  rabbit_password: R6WwGzhqbVWr92EA2aqLXjLu
-  user_password: TdLvNWcBX6lVDB6qAzer50Dh
+  rabbit_password: cD8W4zy5fDRrYAFvrq8NANEK
+  user_password: tqERQBuu4fgIXAnkbfEGyXP0
 murano-cfapi:
-  db_password: mla2X0WdSV9QE9IEOQpkHpRy
+  db_password: fZ1RNUem5eoGgIcV3yL0TN2x
   enabled: false
-  rabbit_password: DtrSZSmt2vMEYPrF3fZs06Uz
-  user_password: JHlAVwKHekkmifmcHZHW3ZUV
+  rabbit_password: i5E0szk7J6Wlp2arzWTH0POF
+  user_password: p1NPRLU02WBItUfbSy5ycgcV
 murano_glance_artifacts_plugin:
   enabled: false
 murano_settings:
@@ -149,241 +151,70 @@ murano_settings:
     weight: 20
   murano_repo_url: http://storage.apps.openstack.org/
 mysql:
-  root_password: 0vV45Do55NcrpCNA3pbkXrcp
-  wsrep_password: veme1dcKLhe0c4nfVM6DP3xL
+  root_password: ov46HwIkXb0jSvBxXENED7yS
+  wsrep_password: 9ym16psHlLDRxTK7zCxQAhOm
 network_metadata:
   nodes:
-    node-65:
-      fqdn: node-65.test.domain.local
-      name: node-65
+    node-10:
+      fqdn: node-10.test.domain.local
+      name: node-10
       network_roles:
-        admin/pxe: 10.110.0.10
-        aodh/api: 192.168.0.9
-        ceilometer/api: 192.168.0.9
-        ceph/public: 192.168.1.3
-        ceph/radosgw: 10.110.1.9
-        ceph/replication: 192.168.1.3
-        cinder/api: 192.168.0.9
-        cinder/iscsi: 192.168.1.3
-        ex: 10.110.1.9
-        fw-admin: 10.110.0.10
-        glance/api: 192.168.0.9
-        heat/api: 192.168.0.9
-        horizon: 192.168.0.9
-        ironic/api: 192.168.0.9
-        keystone/api: 192.168.0.9
-        management: 192.168.0.9
-        mgmt/corosync: 192.168.0.9
-        mgmt/database: 192.168.0.9
-        mgmt/memcache: 192.168.0.9
-        mgmt/messaging: 192.168.0.9
-        mgmt/vip: 192.168.0.9
-        mongo/db: 192.168.0.9
-        murano/api: 192.168.0.9
-        murano/cfapi: 192.168.0.9
-        neutron/api: 192.168.0.9
-        neutron/floating: null
-        neutron/private: null
-        nova/api: 192.168.0.9
-        nova/migration: 192.168.0.9
-        public/vip: 10.110.1.9
-        sahara/api: 192.168.0.9
-        storage: 192.168.1.3
-        swift/api: 192.168.0.9
-        swift/replication: 192.168.1.3
-      node_roles:
-      - primary-controller
-      nova_cpu_pinning_enabled: true
-      nova_hugepages_enabled: false
-      swift_zone: '65'
-      uid: '65'
-      user_node_name: Untitled (d5:fc)
-    node-68:
-      fqdn: node-68.test.domain.local
-      name: node-68
-      network_roles:
-        admin/pxe: 10.110.0.11
-        aodh/api: 192.168.0.8
-        ceilometer/api: 192.168.0.8
+        admin/pxe: 10.110.0.3
+        aodh/api: 192.168.0.4
+        ceilometer/api: 192.168.0.4
         ceph/public: 192.168.1.2
+        ceph/radosgw: 172.16.0.4
         ceph/replication: 192.168.1.2
-        cinder/api: 192.168.0.8
+        cinder/api: 192.168.0.4
         cinder/iscsi: 192.168.1.2
-        fw-admin: 10.110.0.11
-        glance/api: 192.168.0.8
-        heat/api: 192.168.0.8
-        horizon: 192.168.0.8
-        ironic/api: 192.168.0.8
-        keystone/api: 192.168.0.8
-        management: 192.168.0.8
-        mgmt/corosync: 192.168.0.8
-        mgmt/database: 192.168.0.8
-        mgmt/memcache: 192.168.0.8
-        mgmt/messaging: 192.168.0.8
-        mgmt/vip: 192.168.0.8
-        mongo/db: 192.168.0.8
-        murano/api: 192.168.0.8
-        murano/cfapi: 192.168.0.8
-        neutron/api: 192.168.0.8
+        ex: 172.16.0.4
+        fw-admin: 10.110.0.3
+        glance/api: 192.168.0.4
+        glance/glare: 192.168.0.4
+        heat/api: 192.168.0.4
+        horizon: 192.168.0.4
+        ironic/api: 192.168.0.4
+        keystone/api: 192.168.0.4
+        management: 192.168.0.4
+        mgmt/corosync: 192.168.0.4
+        mgmt/database: 192.168.0.4
+        mgmt/memcache: 192.168.0.4
+        mgmt/messaging: 192.168.0.4
+        mgmt/vip: 192.168.0.4
+        mongo/db: 192.168.0.4
+        murano/api: 192.168.0.4
+        murano/cfapi: 192.168.0.4
+        neutron/api: 192.168.0.4
         neutron/floating: null
         neutron/private: null
-        nova/api: 192.168.0.8
-        nova/migration: 192.168.0.8
-        sahara/api: 192.168.0.8
+        nova/api: 192.168.0.4
+        nova/migration: 192.168.0.4
+        public/vip: 172.16.0.4
+        sahara/api: 192.168.0.4
         storage: 192.168.1.2
-        swift/api: 192.168.0.8
+        swift/api: 192.168.0.4
         swift/replication: 192.168.1.2
       node_roles:
-      - ceph-osd
-      nova_cpu_pinning_enabled: true
-      nova_hugepages_enabled: false
-      swift_zone: '68'
-      uid: '68'
-      user_node_name: Untitled (8d:61)
-    node-69:
-      fqdn: node-69.test.domain.local
-      name: node-69
-      network_roles:
-        admin/pxe: 10.110.0.8
-        aodh/api: 192.168.0.11
-        ceilometer/api: 192.168.0.11
-        ceph/public: 192.168.1.5
-        ceph/replication: 192.168.1.5
-        cinder/api: 192.168.0.11
-        cinder/iscsi: 192.168.1.5
-        fw-admin: 10.110.0.8
-        glance/api: 192.168.0.11
-        heat/api: 192.168.0.11
-        horizon: 192.168.0.11
-        ironic/api: 192.168.0.11
-        keystone/api: 192.168.0.11
-        management: 192.168.0.11
-        mgmt/corosync: 192.168.0.11
-        mgmt/database: 192.168.0.11
-        mgmt/memcache: 192.168.0.11
-        mgmt/messaging: 192.168.0.11
-        mgmt/vip: 192.168.0.11
-        mongo/db: 192.168.0.11
-        murano/api: 192.168.0.11
-        murano/cfapi: 192.168.0.11
-        neutron/api: 192.168.0.11
-        neutron/floating: null
-        neutron/private: null
-        nova/api: 192.168.0.11
-        nova/migration: 192.168.0.11
-        sahara/api: 192.168.0.11
-        storage: 192.168.1.5
-        swift/api: 192.168.0.11
-        swift/replication: 192.168.1.5
-      node_roles:
-      - ceph-osd
-      nova_cpu_pinning_enabled: true
-      nova_hugepages_enabled: false
-      swift_zone: '69'
-      uid: '69'
-      user_node_name: Untitled (28:0b)
-    node-70:
-      fqdn: node-70.test.domain.local
-      name: node-70
-      network_roles:
-        admin/pxe: 10.110.0.7
-        aodh/api: 192.168.0.12
-        ceilometer/api: 192.168.0.12
-        ceph/public: 192.168.1.6
-        ceph/replication: 192.168.1.6
-        cinder/api: 192.168.0.12
-        cinder/iscsi: 192.168.1.6
-        fw-admin: 10.110.0.7
-        glance/api: 192.168.0.12
-        heat/api: 192.168.0.12
-        horizon: 192.168.0.12
-        ironic/api: 192.168.0.12
-        keystone/api: 192.168.0.12
-        management: 192.168.0.12
-        mgmt/corosync: 192.168.0.12
-        mgmt/database: 192.168.0.12
-        mgmt/memcache: 192.168.0.12
-        mgmt/messaging: 192.168.0.12
-        mgmt/vip: 192.168.0.12
-        mongo/db: 192.168.0.12
-        murano/api: 192.168.0.12
-        murano/cfapi: 192.168.0.12
-        neutron/api: 192.168.0.12
-        neutron/floating: null
-        neutron/private: null
-        nova/api: 192.168.0.12
-        nova/migration: 192.168.0.12
-        sahara/api: 192.168.0.12
-        storage: 192.168.1.6
-        swift/api: 192.168.0.12
-        swift/replication: 192.168.1.6
-      node_roles:
-      - compute
-      nova_cpu_pinning_enabled: true
-      nova_hugepages_enabled: false
-      swift_zone: '70'
-      uid: '70'
-      user_node_name: Untitled (d3:bd)
-    node-71:
-      fqdn: node-71.test.domain.local
-      name: node-71
-      network_roles:
-        admin/pxe: 10.110.0.9
-        aodh/api: 192.168.0.10
-        ceilometer/api: 192.168.0.10
-        ceph/public: 192.168.1.4
-        ceph/radosgw: 10.110.1.10
-        ceph/replication: 192.168.1.4
-        cinder/api: 192.168.0.10
-        cinder/iscsi: 192.168.1.4
-        ex: 10.110.1.10
-        fw-admin: 10.110.0.9
-        glance/api: 192.168.0.10
-        heat/api: 192.168.0.10
-        horizon: 192.168.0.10
-        ironic/api: 192.168.0.10
-        keystone/api: 192.168.0.10
-        management: 192.168.0.10
-        mgmt/corosync: 192.168.0.10
-        mgmt/database: 192.168.0.10
-        mgmt/memcache: 192.168.0.10
-        mgmt/messaging: 192.168.0.10
-        mgmt/vip: 192.168.0.10
-        mongo/db: 192.168.0.10
-        murano/api: 192.168.0.10
-        murano/cfapi: 192.168.0.10
-        neutron/api: 192.168.0.10
-        neutron/floating: null
-        neutron/private: null
-        nova/api: 192.168.0.10
-        nova/migration: 192.168.0.10
-        public/vip: 10.110.1.10
-        sahara/api: 192.168.0.10
-        storage: 192.168.1.4
-        swift/api: 192.168.0.10
-        swift/replication: 192.168.1.4
-      node_roles:
       - controller
-      nova_cpu_pinning_enabled: true
+      nova_cpu_pinning_enabled: false
       nova_hugepages_enabled: false
-      swift_zone: '71'
-      uid: '71'
-      user_node_name: Untitled (cf:cd)
-    node-72:
-      fqdn: node-72.test.domain.local
-      name: node-72
+      swift_zone: '10'
+      uid: '10'
+      user_node_name: Untitled (65:2d)
+    node-2:
+      fqdn: node-2.test.domain.local
+      name: node-2
       network_roles:
-        admin/pxe: 10.110.0.19
+        admin/pxe: 10.110.0.5
         aodh/api: 192.168.0.7
         ceilometer/api: 192.168.0.7
-        ceph/public: 192.168.1.1
-        ceph/radosgw: 10.110.1.8
-        ceph/replication: 192.168.1.1
+        ceph/public: 192.168.1.5
+        ceph/replication: 192.168.1.5
         cinder/api: 192.168.0.7
-        cinder/iscsi: 192.168.1.1
-        ex: 10.110.1.8
-        fw-admin: 10.110.0.19
+        cinder/iscsi: 192.168.1.5
+        fw-admin: 10.110.0.5
         glance/api: 192.168.0.7
+        glance/glare: 192.168.0.7
         heat/api: 192.168.0.7
         horizon: 192.168.0.7
         ironic/api: 192.168.0.7
@@ -402,21 +233,198 @@ network_metadata:
         neutron/private: null
         nova/api: 192.168.0.7
         nova/migration: 192.168.0.7
-        public/vip: 10.110.1.8
         sahara/api: 192.168.0.7
-        storage: 192.168.1.1
+        storage: 192.168.1.5
         swift/api: 192.168.0.7
+        swift/replication: 192.168.1.5
+      node_roles:
+      - ceph-osd
+      nova_cpu_pinning_enabled: false
+      nova_hugepages_enabled: false
+      swift_zone: '2'
+      uid: '2'
+      user_node_name: Untitled (c0:7c)
+    node-4:
+      fqdn: node-4.test.domain.local
+      name: node-4
+      network_roles:
+        admin/pxe: 10.110.0.8
+        aodh/api: 192.168.0.3
+        ceilometer/api: 192.168.0.3
+        ceph/public: 192.168.1.1
+        ceph/replication: 192.168.1.1
+        cinder/api: 192.168.0.3
+        cinder/iscsi: 192.168.1.1
+        fw-admin: 10.110.0.8
+        glance/api: 192.168.0.3
+        glance/glare: 192.168.0.3
+        heat/api: 192.168.0.3
+        horizon: 192.168.0.3
+        ironic/api: 192.168.0.3
+        keystone/api: 192.168.0.3
+        management: 192.168.0.3
+        mgmt/corosync: 192.168.0.3
+        mgmt/database: 192.168.0.3
+        mgmt/memcache: 192.168.0.3
+        mgmt/messaging: 192.168.0.3
+        mgmt/vip: 192.168.0.3
+        mongo/db: 192.168.0.3
+        murano/api: 192.168.0.3
+        murano/cfapi: 192.168.0.3
+        neutron/api: 192.168.0.3
+        neutron/floating: null
+        neutron/private: null
+        nova/api: 192.168.0.3
+        nova/migration: 192.168.0.3
+        sahara/api: 192.168.0.3
+        storage: 192.168.1.1
+        swift/api: 192.168.0.3
         swift/replication: 192.168.1.1
       node_roles:
-      - controller
-      nova_cpu_pinning_enabled: true
+      - compute
+      nova_cpu_pinning_enabled: false
       nova_hugepages_enabled: false
-      swift_zone: '72'
-      uid: '72'
-      user_node_name: Untitled (64:bd)
+      swift_zone: '4'
+      uid: '4'
+      user_node_name: Untitled (60:04)
+    node-6:
+      fqdn: node-6.test.domain.local
+      name: node-6
+      network_roles:
+        admin/pxe: 10.110.0.9
+        aodh/api: 192.168.0.5
+        ceilometer/api: 192.168.0.5
+        ceph/public: 192.168.1.3
+        ceph/radosgw: 172.16.0.5
+        ceph/replication: 192.168.1.3
+        cinder/api: 192.168.0.5
+        cinder/iscsi: 192.168.1.3
+        ex: 172.16.0.5
+        fw-admin: 10.110.0.9
+        glance/api: 192.168.0.5
+        glance/glare: 192.168.0.5
+        heat/api: 192.168.0.5
+        horizon: 192.168.0.5
+        ironic/api: 192.168.0.5
+        keystone/api: 192.168.0.5
+        management: 192.168.0.5
+        mgmt/corosync: 192.168.0.5
+        mgmt/database: 192.168.0.5
+        mgmt/memcache: 192.168.0.5
+        mgmt/messaging: 192.168.0.5
+        mgmt/vip: 192.168.0.5
+        mongo/db: 192.168.0.5
+        murano/api: 192.168.0.5
+        murano/cfapi: 192.168.0.5
+        neutron/api: 192.168.0.5
+        neutron/floating: null
+        neutron/private: null
+        nova/api: 192.168.0.5
+        nova/migration: 192.168.0.5
+        public/vip: 172.16.0.5
+        sahara/api: 192.168.0.5
+        storage: 192.168.1.3
+        swift/api: 192.168.0.5
+        swift/replication: 192.168.1.3
+      node_roles:
+      - primary-controller
+      nova_cpu_pinning_enabled: false
+      nova_hugepages_enabled: false
+      swift_zone: '6'
+      uid: '6'
+      user_node_name: Untitled (b8:a3)
+    node-7:
+      fqdn: node-7.test.domain.local
+      name: node-7
+      network_roles:
+        admin/pxe: 10.110.0.11
+        aodh/api: 192.168.0.6
+        ceilometer/api: 192.168.0.6
+        ceph/public: 192.168.1.4
+        ceph/replication: 192.168.1.4
+        cinder/api: 192.168.0.6
+        cinder/iscsi: 192.168.1.4
+        fw-admin: 10.110.0.11
+        glance/api: 192.168.0.6
+        glance/glare: 192.168.0.6
+        heat/api: 192.168.0.6
+        horizon: 192.168.0.6
+        ironic/api: 192.168.0.6
+        keystone/api: 192.168.0.6
+        management: 192.168.0.6
+        mgmt/corosync: 192.168.0.6
+        mgmt/database: 192.168.0.6
+        mgmt/memcache: 192.168.0.6
+        mgmt/messaging: 192.168.0.6
+        mgmt/vip: 192.168.0.6
+        mongo/db: 192.168.0.6
+        murano/api: 192.168.0.6
+        murano/cfapi: 192.168.0.6
+        neutron/api: 192.168.0.6
+        neutron/floating: null
+        neutron/private: null
+        nova/api: 192.168.0.6
+        nova/migration: 192.168.0.6
+        sahara/api: 192.168.0.6
+        storage: 192.168.1.4
+        swift/api: 192.168.0.6
+        swift/replication: 192.168.1.4
+      node_roles:
+      - ceph-osd
+      nova_cpu_pinning_enabled: false
+      nova_hugepages_enabled: false
+      swift_zone: '7'
+      uid: '7'
+      user_node_name: Untitled (fa:3d)
+    node-8:
+      fqdn: node-8.test.domain.local
+      name: node-8
+      network_roles:
+        admin/pxe: 10.110.0.6
+        aodh/api: 192.168.0.8
+        ceilometer/api: 192.168.0.8
+        ceph/public: 192.168.1.6
+        ceph/radosgw: 172.16.0.6
+        ceph/replication: 192.168.1.6
+        cinder/api: 192.168.0.8
+        cinder/iscsi: 192.168.1.6
+        ex: 172.16.0.6
+        fw-admin: 10.110.0.6
+        glance/api: 192.168.0.8
+        glance/glare: 192.168.0.8
+        heat/api: 192.168.0.8
+        horizon: 192.168.0.8
+        ironic/api: 192.168.0.8
+        keystone/api: 192.168.0.8
+        management: 192.168.0.8
+        mgmt/corosync: 192.168.0.8
+        mgmt/database: 192.168.0.8
+        mgmt/memcache: 192.168.0.8
+        mgmt/messaging: 192.168.0.8
+        mgmt/vip: 192.168.0.8
+        mongo/db: 192.168.0.8
+        murano/api: 192.168.0.8
+        murano/cfapi: 192.168.0.8
+        neutron/api: 192.168.0.8
+        neutron/floating: null
+        neutron/private: null
+        nova/api: 192.168.0.8
+        nova/migration: 192.168.0.8
+        public/vip: 172.16.0.6
+        sahara/api: 192.168.0.8
+        storage: 192.168.1.6
+        swift/api: 192.168.0.8
+        swift/replication: 192.168.1.6
+      node_roles:
+      - controller
+      nova_cpu_pinning_enabled: false
+      nova_hugepages_enabled: false
+      swift_zone: '8'
+      uid: '8'
+      user_node_name: Untitled (9e:66)
   vips:
     management:
-      ipaddr: 192.168.0.6
+      ipaddr: 192.168.0.2
       is_user_defined: false
       namespace: haproxy
       network_role: mgmt/vip
@@ -425,7 +433,7 @@ network_metadata:
       - primary-controller
       vendor_specific: null
     public:
-      ipaddr: 10.110.1.7
+      ipaddr: 172.16.0.3
       is_user_defined: false
       namespace: haproxy
       network_role: public/vip
@@ -434,7 +442,7 @@ network_metadata:
       - primary-controller
       vendor_specific: null
     vrouter:
-      ipaddr: 192.168.0.5
+      ipaddr: 192.168.0.1
       is_user_defined: false
       namespace: vrouter
       network_role: mgmt/vip
@@ -443,7 +451,7 @@ network_metadata:
       - primary-controller
       vendor_specific: null
     vrouter_pub:
-      ipaddr: 10.110.1.6
+      ipaddr: 172.16.0.2
       is_user_defined: false
       namespace: vrouter
       network_role: public/vip
@@ -460,18 +468,18 @@ network_scheme:
   endpoints:
     br-fw-admin:
       IP:
-      - 10.110.0.7/24
+      - 10.110.0.8/24
       gateway: 10.110.0.1
       vendor_specific:
         provider_gateway: 10.110.0.1
     br-mgmt:
       IP:
-      - 192.168.0.12/24
+      - 192.168.0.3/24
     br-prv:
       IP: none
     br-storage:
       IP:
-      - 192.168.1.6/24
+      - 192.168.1.1/24
   interfaces:
     enp0s3:
       vendor_specific:
@@ -493,10 +501,6 @@ network_scheme:
       vendor_specific:
         bus_info: '0000:00:07.0'
         driver: e1000
-    enp0s8:
-      vendor_specific:
-        bus_info: '0000:00:08.0'
-        driver: e1000
   provider: lnx
   roles:
     admin/pxe: br-fw-admin
@@ -508,6 +512,7 @@ network_scheme:
     cinder/iscsi: br-storage
     fw-admin: br-fw-admin
     glance/api: br-mgmt
+    glance/glare: br-mgmt
     heat/api: br-mgmt
     horizon: br-mgmt
     ironic/api: br-mgmt
@@ -569,7 +574,7 @@ neutron_advanced_configuration:
   neutron_qos: false
 node_volumes:
 - extra:
-  - disk/by-id/virtio-2e7f7e4f674f4ba3a5a6
+  - disk/by-id/virtio-f6ca5e0672534ba69cca
   free_space: 50572
   id: vda
   name: vda
@@ -594,7 +599,7 @@ node_volumes:
     type: pv
     vg: vm
 - extra:
-  - disk/by-id/virtio-82cd93dcedfc447691fb
+  - disk/by-id/virtio-6a7a7a2779dc45a4b778
   free_space: 50572
   id: vdb
   name: vdb
@@ -619,7 +624,7 @@ node_volumes:
     type: pv
     vg: vm
 - extra:
-  - disk/by-id/virtio-cd6310a2b3b5412e8f7d
+  - disk/by-id/virtio-fcb8e3f7dc034bc6919e
   free_space: 50572
   id: vdc
   name: vdc
@@ -671,80 +676,80 @@ node_volumes:
     size: 132260
     type: lv
 nodes:
-- fqdn: node-65.test.domain.local
-  internal_address: 192.168.0.9
+- fqdn: node-2.test.domain.local
+  internal_address: 192.168.0.7
   internal_netmask: 255.255.255.0
-  name: node-65
-  public_address: 10.110.1.9
+  name: node-2
+  role: ceph-osd
+  storage_address: 192.168.1.5
+  storage_netmask: 255.255.255.0
+  swift_zone: '2'
+  uid: '2'
+  user_node_name: Untitled (c0:7c)
+- fqdn: node-4.test.domain.local
+  internal_address: 192.168.0.3
+  internal_netmask: 255.255.255.0
+  name: node-4
+  role: compute
+  storage_address: 192.168.1.1
+  storage_netmask: 255.255.255.0
+  swift_zone: '4'
+  uid: '4'
+  user_node_name: Untitled (60:04)
+- fqdn: node-6.test.domain.local
+  internal_address: 192.168.0.5
+  internal_netmask: 255.255.255.0
+  name: node-6
+  public_address: 172.16.0.5
   public_netmask: 255.255.255.0
   role: primary-controller
   storage_address: 192.168.1.3
   storage_netmask: 255.255.255.0
-  swift_zone: '65'
-  uid: '65'
-  user_node_name: Untitled (d5:fc)
-- fqdn: node-68.test.domain.local
-  internal_address: 192.168.0.8
+  swift_zone: '6'
+  uid: '6'
+  user_node_name: Untitled (b8:a3)
+- fqdn: node-7.test.domain.local
+  internal_address: 192.168.0.6
   internal_netmask: 255.255.255.0
-  name: node-68
+  name: node-7
   role: ceph-osd
-  storage_address: 192.168.1.2
-  storage_netmask: 255.255.255.0
-  swift_zone: '68'
-  uid: '68'
-  user_node_name: Untitled (8d:61)
-- fqdn: node-69.test.domain.local
-  internal_address: 192.168.0.11
-  internal_netmask: 255.255.255.0
-  name: node-69
-  role: ceph-osd
-  storage_address: 192.168.1.5
-  storage_netmask: 255.255.255.0
-  swift_zone: '69'
-  uid: '69'
-  user_node_name: Untitled (28:0b)
-- fqdn: node-70.test.domain.local
-  internal_address: 192.168.0.12
-  internal_netmask: 255.255.255.0
-  name: node-70
-  role: compute
-  storage_address: 192.168.1.6
-  storage_netmask: 255.255.255.0
-  swift_zone: '70'
-  uid: '70'
-  user_node_name: Untitled (d3:bd)
-- fqdn: node-71.test.domain.local
-  internal_address: 192.168.0.10
-  internal_netmask: 255.255.255.0
-  name: node-71
-  public_address: 10.110.1.10
-  public_netmask: 255.255.255.0
-  role: controller
   storage_address: 192.168.1.4
   storage_netmask: 255.255.255.0
-  swift_zone: '71'
-  uid: '71'
-  user_node_name: Untitled (cf:cd)
-- fqdn: node-72.test.domain.local
-  internal_address: 192.168.0.7
+  swift_zone: '7'
+  uid: '7'
+  user_node_name: Untitled (fa:3d)
+- fqdn: node-8.test.domain.local
+  internal_address: 192.168.0.8
   internal_netmask: 255.255.255.0
-  name: node-72
-  public_address: 10.110.1.8
+  name: node-8
+  public_address: 172.16.0.6
   public_netmask: 255.255.255.0
   role: controller
-  storage_address: 192.168.1.1
+  storage_address: 192.168.1.6
   storage_netmask: 255.255.255.0
-  swift_zone: '72'
-  uid: '72'
-  user_node_name: Untitled (64:bd)
+  swift_zone: '8'
+  uid: '8'
+  user_node_name: Untitled (9e:66)
+- fqdn: node-10.test.domain.local
+  internal_address: 192.168.0.4
+  internal_netmask: 255.255.255.0
+  name: node-10
+  public_address: 172.16.0.4
+  public_netmask: 255.255.255.0
+  role: controller
+  storage_address: 192.168.1.2
+  storage_netmask: 255.255.255.0
+  swift_zone: '10'
+  uid: '10'
+  user_node_name: Untitled (65:2d)
 nova:
-  db_password: 8pTPY4eh6fi6YcdV35TjIw6T
+  db_password: ZVuyx3mq1400icZnQxQUrpg8
   enable_hugepages: false
   state_path: /var/lib/nova
-  user_password: 7sFrZDSM1jhiW27Y0ylVmJVh
+  user_password: JRGz1XalivY9Ytl5njXnNwD4
 nova_quota: false
 online: true
-openstack_version: liberty-9.0
+openstack_version: mitaka-9.0
 operator_user:
   authkeys: ''
   homedir: /home/fueladmin
@@ -753,7 +758,7 @@ operator_user:
     label: Operating System Access
     weight: 15
   name: fueladmin
-  password: cYgfcWwYbyObjG6FRrtiVY7I
+  password: sHuR05Mwaj1EXyliI50cEz4b
   sudo: 'ALL=(ALL) NOPASSWD: ALL'
 plugins: []
 priority: 300
@@ -763,11 +768,11 @@ provision:
     /:
       container: gzip
       format: ext4
-      uri: http://10.110.0.2:8080/targetimages/env_16_ubuntu_1404_amd64.img.gz
+      uri: http://10.110.0.2:8080/targetimages/env_3_ubuntu_1404_amd64.img.gz
     /boot:
       container: gzip
       format: ext2
-      uri: http://10.110.0.2:8080/targetimages/env_16_ubuntu_1404_amd64-boot.img.gz
+      uri: http://10.110.0.2:8080/targetimages/env_3_ubuntu_1404_amd64-boot.img.gz
   metadata:
     group: general
     label: Provision
@@ -889,8 +894,8 @@ public_ssl:
     weight: 110
   services: false
 puppet:
-  manifests: rsync://10.110.0.2:/puppet/liberty-9.0/manifests/
-  modules: rsync://10.110.0.2:/puppet/liberty-9.0/modules/
+  manifests: rsync://10.110.0.2:/puppet/mitaka-9.0/manifests/
+  modules: rsync://10.110.0.2:/puppet/mitaka-9.0/modules/
 puppet_debug: true
 quantum: true
 quantum_settings:
@@ -907,13 +912,13 @@ quantum_settings:
   L3:
     use_namespaces: true
   database:
-    passwd: gwhhYzw8ezifqnvJqfpjltdw
+    passwd: 2T6smRKhKQauvz9dCsrq7duK
   default_floating_net: admin_floating_net
   default_private_net: admin_internal_net
   keystone:
-    admin_password: UURm691XxREfFT3jJQi00EYp
+    admin_password: qsU8pXfUSbjGjf3YmRW5HOI6
   metadata:
-    metadata_proxy_shared_secret: avlkOenA9aD5U4kDLvdwdw5u
+    metadata_proxy_shared_secret: W9q4OAOhtIZd1ygrsyA1SyZQ
   predefined_networks:
     admin_floating_net:
       L2:
@@ -924,10 +929,10 @@ quantum_settings:
       L3:
         enable_dhcp: false
         floating:
-        - 10.110.1.128:10.110.1.254
-        gateway: 10.110.1.1
+        - 172.16.0.130:172.16.0.254
+        gateway: 172.16.0.1
         nameservers: []
-        subnet: 10.110.1.0/24
+        subnet: 172.16.0.0/24
       shared: false
       tenant: admin
     admin_internal_net:
@@ -947,7 +952,7 @@ quantum_settings:
       shared: false
       tenant: admin
 rabbit:
-  password: 8CsIG9yNPfKuGpvGwNWZJZ5w
+  password: aWu9tmo5TMnmsNTD45RUG3aG
 repo_setup:
   installer_initrd:
     local: /var/www/nailgun/ubuntu/x86_64/images/initrd.gz
@@ -984,7 +989,7 @@ repo_setup:
     section: main restricted
     suite: mos9.0
     type: deb
-    uri: http://10.110.0.2:8080/liberty-9.0/ubuntu/x86_64
+    uri: http://10.110.0.2:8080/mitaka-9.0/ubuntu/x86_64
   - name: mos-updates
     priority: 1050
     section: main restricted
@@ -1008,13 +1013,13 @@ repo_setup:
     section: main restricted
     suite: auxiliary
     type: deb
-    uri: http://10.110.0.2:8080/liberty-9.0/ubuntu/auxiliary
+    uri: http://10.110.0.2:8080/mitaka-9.0/ubuntu/auxiliary
 resume_guests_state_on_host_boot: true
 role: compute
 sahara:
-  db_password: rS1wYQXCcEx5mej3NCxpj0hI
+  db_password: 0Hlx9TjWbNrcMlDh9qPWWVJs
   enabled: false
-  user_password: IJKZZcuehMewHSazrrRPcYMG
+  user_password: qGowimoMYI6VRVeMKwT2SHiR
 service_user:
   homedir: /var/lib/fuel
   metadata:
@@ -1025,18 +1030,22 @@ service_user:
       condition: 'true'
     weight: 10
   name: fuel
-  password: F1u14Hp5GEePKfAMqAberXhR
+  password: ZcvyLvyEFCsBg7YQvv3XuNTb
   root_password: r00tme
   sudo: 'ALL=(ALL) NOPASSWD: ALL'
 status: discover
 storage:
+  admin_key: AQCJOwJXAAAAABAATKvfWq4KRhThWwkeuOs8Cg==
+  bootstrap_osd_key: AQCJOwJXAAAAABAAmLQ6yn5KezANw4RklQciHg==
   ephemeral_ceph: true
+  fsid: eb0e129a-1f6e-487b-8b20-25a0e6ca3026
   images_ceph: true
   images_vcenter: false
   metadata:
     group: storage
     label: Storage Backends
     weight: 60
+  mon_key: AQCJOwJXAAAAABAAztQuf/SpAT5pT+kDjoeeAg==
   objects_ceph: true
   osd_pool_size: '2'
   per_pool_pg_nums:
@@ -1047,12 +1056,13 @@ storage:
     images: 64
     volumes: 128
   pg_num: 64
+  radosgw_key: AQCJOwJXAAAAABAAB6BRO1HugZAVNarA971c1g==
   volumes_block_device: false
   volumes_ceph: true
   volumes_lvm: false
 storage_network_range: 192.168.1.0/24
 swift:
-  user_password: fvP5tNhYdHvdcKX3KOhALz9b
+  user_password: S7QuCoPJM1caQ35ro7e45L18
 syslog:
   metadata:
     enabled: false
@@ -1075,7 +1085,7 @@ tasks:
   priority: 100
   type: puppet
   uids:
-  - '70'
+  - '4'
 - id: hiera
   parameters:
     cwd: /
@@ -1086,7 +1096,7 @@ tasks:
   priority: 200
   type: puppet
   uids:
-  - '70'
+  - '4'
 - id: setup_repositories
   parameters:
     cwd: /
@@ -1097,7 +1107,7 @@ tasks:
   priority: 300
   type: puppet
   uids:
-  - '70'
+  - '4'
 - id: fuel_pkgs
   parameters:
     cwd: /
@@ -1108,7 +1118,7 @@ tasks:
   priority: 400
   type: puppet
   uids:
-  - '70'
+  - '4'
 - id: globals
   parameters:
     cwd: /
@@ -1119,7 +1129,7 @@ tasks:
   priority: 500
   type: puppet
   uids:
-  - '70'
+  - '4'
 - id: logging
   parameters:
     cwd: /
@@ -1130,7 +1140,7 @@ tasks:
   priority: 600
   type: puppet
   uids:
-  - '70'
+  - '4'
 - id: tools
   parameters:
     cwd: /
@@ -1141,7 +1151,7 @@ tasks:
   priority: 700
   type: puppet
   uids:
-  - '70'
+  - '4'
 - id: netconfig
   parameters:
     cwd: /
@@ -1152,7 +1162,7 @@ tasks:
   priority: 800
   type: puppet
   uids:
-  - '70'
+  - '4'
 - id: connectivity_tests
   parameters:
     cwd: /
@@ -1163,7 +1173,7 @@ tasks:
   priority: 900
   type: puppet
   uids:
-  - '70'
+  - '4'
 - id: sriov_iommu_check
   parameters:
     cwd: /
@@ -1174,7 +1184,7 @@ tasks:
   priority: 1000
   type: puppet
   uids:
-  - '70'
+  - '4'
 - id: firewall
   parameters:
     cwd: /
@@ -1185,7 +1195,7 @@ tasks:
   priority: 1100
   type: puppet
   uids:
-  - '70'
+  - '4'
 - id: hosts
   parameters:
     cwd: /
@@ -1196,95 +1206,95 @@ tasks:
   priority: 1200
   type: puppet
   uids:
-  - '70'
+  - '4'
 - id: top-role-compute
   parameters:
     cwd: /
-    puppet_manifest: /etc/puppet/modules/osnailyfacter/modular/roles/compute.pp
+    puppet_manifest: /etc/puppet/modules/openstack_tasks/examples/roles/compute.pp
     puppet_modules: /etc/puppet/modules
     retries: null
     timeout: 3600
   priority: 1300
   type: puppet
   uids:
-  - '70'
+  - '4'
 - id: openstack-network-common-config
   parameters:
     cwd: /
-    puppet_manifest: /etc/puppet/modules/osnailyfacter/modular/openstack-network/common-config.pp
+    puppet_manifest: /etc/puppet/modules/openstack_tasks/examples/openstack-network/common-config.pp
     puppet_modules: /etc/puppet/modules
     retries: null
     timeout: 1800
   priority: 1400
   type: puppet
   uids:
-  - '70'
+  - '4'
 - id: openstack-network-plugins-l2
   parameters:
     cwd: /
-    puppet_manifest: /etc/puppet/modules/osnailyfacter/modular/openstack-network/plugins/ml2.pp
+    puppet_manifest: /etc/puppet/modules/openstack_tasks/examples/openstack-network/plugins/ml2.pp
     puppet_modules: /etc/puppet/modules
     retries: null
     timeout: 1800
   priority: 1500
   type: puppet
   uids:
-  - '70'
+  - '4'
 - id: openstack-network-agents-l3
   parameters:
     cwd: /
-    puppet_manifest: /etc/puppet/modules/osnailyfacter/modular/openstack-network/agents/l3.pp
+    puppet_manifest: /etc/puppet/modules/openstack_tasks/examples/openstack-network/agents/l3.pp
     puppet_modules: /etc/puppet/modules
     retries: null
     timeout: 1800
   priority: 1600
   type: puppet
   uids:
-  - '70'
+  - '4'
 - id: openstack-network-agents-sriov
   parameters:
     cwd: /
-    puppet_manifest: /etc/puppet/modules/osnailyfacter/modular/openstack-network/agents/sriov.pp
+    puppet_manifest: /etc/puppet/modules/openstack_tasks/examples/openstack-network/agents/sriov.pp
     puppet_modules: /etc/puppet/modules
     retries: null
     timeout: 1800
   priority: 1700
   type: puppet
   uids:
-  - '70'
+  - '4'
 - id: openstack-network-agents-metadata
   parameters:
     cwd: /
-    puppet_manifest: /etc/puppet/modules/osnailyfacter/modular/openstack-network/agents/metadata.pp
+    puppet_manifest: /etc/puppet/modules/openstack_tasks/examples/openstack-network/agents/metadata.pp
     puppet_modules: /etc/puppet/modules
     retries: null
     timeout: 1800
   priority: 1800
   type: puppet
   uids:
-  - '70'
+  - '4'
 - id: openstack-network-compute-nova
   parameters:
     cwd: /
-    puppet_manifest: /etc/puppet/modules/osnailyfacter/modular/openstack-network/compute-nova.pp
+    puppet_manifest: /etc/puppet/modules/openstack_tasks/examples/openstack-network/compute-nova.pp
     puppet_modules: /etc/puppet/modules
     retries: null
     timeout: 1800
   priority: 1900
   type: puppet
   uids:
-  - '70'
+  - '4'
 - id: enable_nova_compute_service
   parameters:
     cwd: /
-    puppet_manifest: /etc/puppet/modules/osnailyfacter/modular/roles/enable_compute.pp
+    puppet_manifest: /etc/puppet/modules/openstack_tasks/examples/roles/enable_compute.pp
     puppet_modules: /etc/puppet/modules
     retries: null
     timeout: 3600
   priority: 2000
   type: puppet
   uids:
-  - '70'
+  - '4'
 test_vm_image:
   container_format: bare
   disk_format: qcow2
@@ -1294,10 +1304,10 @@ test_vm_image:
   min_ram: 64
   os_name: cirros
   public: 'true'
-uid: '70'
+uid: '4'
 use_cow_images: true
 use_vcenter: false
-user_node_name: Untitled (d3:bd)
+user_node_name: Untitled (60:04)
 vms_conf: []
 workloads_collector:
   create_user: true
@@ -1309,6 +1319,6 @@ workloads_collector:
     - action: hide
       condition: 'true'
     weight: 10
-  password: VyzKH6s2TSCe5hD98Bw8D3kg
+  password: KjGX9MFG15gviw4zaEmr5fvv
   tenant: services
   username: fuel_stats_user
