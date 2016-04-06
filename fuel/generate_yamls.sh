@@ -1,4 +1,9 @@
 #!/bin/bash
+#
+# Use this script to generate and save astute.yaml fixtures.
+# Should be executed on Fuel node with at least 7 discovered
+# and unused (not assigned to any env) nodes.
+#
 
 mkdir ./yamls
 rm -f ./yamls/*
@@ -56,6 +61,16 @@ function enable_neutron_dvr {
   fuel env --attributes --env $1 --upload
 }
 
+function enable_public_ssl {
+  fuel env --attributes --env $1 --download
+  ruby -ryaml -e '
+  attr = YAML.load(File.read(ARGV[0]))
+  attr["editable"]["public_ssl"]["services"]["value"] = true
+  attr["editable"]["public_ssl"]["horizon"]["value"] = true
+  File.open(ARGV[0], "w").write(attr.to_yaml)' "cluster_$1/attributes.yaml"
+  fuel env --attributes --env $1 --upload
+}
+
 function list_free_nodes {
   fuel nodes 2>/dev/null | grep discover | grep None | awk '{print $1}'
 }
@@ -96,6 +111,9 @@ function generate_yamls {
   if [ "${name/dvr}" != "$name" ] ; then
     enable_neutron_dvr $env
   fi
+  if [ "${name/public_ssl}" != "$name" ] ; then
+    enable_public_ssl $env
+  fi
 
   for id in `list_free_nodes` ; do
     if ! [ -z "${roles[0]}" ] ; then
@@ -126,7 +144,7 @@ fuel env --create --name test_neutron_vlan --rel 2 --net vlan
 generate_yamls 'test_neutron_vlan' 'neut_vlan.murano.sahara.ceil' 'controller controller compute mongo mongo cinder cinder-block-device' 'primary-controller controller compute primary-mongo mongo cinder cinder-block-device'
 clean_env 'test_neutron_vlan'
 
-# Neutron vlan neutron_dvr
+# Neutron-dvr vlan
 fuel env --create --name test_neutron_vlan --rel 2 --net vlan
 generate_yamls 'test_neutron_vlan' 'neut_vlan.dvr' 'controller controller controller' 'primary-controller'
 clean_env 'test_neutron_vlan'
@@ -141,7 +159,13 @@ fuel env --create --name test_neutron_tun --rel 2 --net tun
 generate_yamls 'test_neutron_tun' 'neut_tun.ironic' 'controller ironic' 'primary-controller ironic'
 clean_env 'test_neutron_tun'
 
-# Neutron tun neutron_l3ha
+# Neutron-l3ha tun
 fuel env --create --name test_neutron_tun --rel 2 --net tun
 generate_yamls 'test_neutron_tun' 'neut_tun.l3ha' 'controller controller controller' 'primary-controller'
 clean_env 'test_neutron_tun'
+
+# Neutron tun, addons, ceph, public and hotizon ssl
+fuel env --create --name test_neutron_tun --rel 2 --net tun
+generate_yamls 'test_neutron_tun' 'neut_tun.murano.sahara.ceil.public_ssl' 'controller controller mongo mongo compute ceph-osd ceph-osd' 'primary-controller compute ceph-osd primary-mongo'
+clean_env 'test_neutron_tun'
+
