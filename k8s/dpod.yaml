@@ -11,6 +11,6 @@ spec:
     spec:
       containers:
       - name: dpod
-        image: bogdando/dbox
+        image: quay.io/l23network/dbox
         command: ["/bin/sleep", "10000000000"]
         imagePullPolicy: IfNotPresent
