@@ -18,4 +18,5 @@ while : ; do
   test_tcp $dns 53 1
   test_dns $dns nginxsvc
   test_tcp nginxsvc 80 1
+  sleep 1
 done
