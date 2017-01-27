@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: etcd-k8s-proxy
+  name: etcd-k8s-proxy
+spec:
+  replicas: 2
+  template:
+    metadata:
+      name: etcd-k8s-proxy
+      labels:
+        app: etcd-k8s-proxy
+    spec:
+      containers:
+        - name: etcd-k8s-proxy
+          image: quay.io/coreos/etcd:v3.0.12
+          env:
+            - name: ETCD_LISTEN_CLIENT_URLS
+              value: "http://0.0.0.0:2379"
+          imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: etcd-calico
+spec:
+  selector:
+    app: etcd-k8s-proxy
+  ports:
+    - protocol: TCP
+      port: 2379
+      targetPort: 2379
