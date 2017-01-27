@@ -15,6 +15,7 @@ function test_dns(){
 
 dns=$(get_ns)
 while : ; do
+  date +"%Y%m%d %T"
   test_tcp $dns 53 1
   test_dns $dns nginxsvc
   test_tcp nginxsvc 80 1
