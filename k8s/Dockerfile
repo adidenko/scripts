@@ -8,4 +8,4 @@ ADD netchk.sh /usr/local/bin/netchk.sh
 RUN apk update \
     && apk add wget iproute2 curl bash tcpdump vim
 
-CMD ["/bin/sleep 604800"]
+CMD ["/usr/local/bin/netchk.sh"]
