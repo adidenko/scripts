@@ -1,28 +1,62 @@
 #!/bin/bash
+#
+# Use this script to generate and save astute.yaml fixtures.
+# Should be executed on Fuel node with at least 7 discovered
+# and unused (not assigned to any env) nodes.
+#
 
 mkdir ./yamls
 rm -f ./yamls/*
 
-function enable_ceph_and_ceilometer {
+function enable_ceph {
   fuel env --attributes --env $1 --download
   ruby -ryaml -e '
   attr = YAML.load(File.read(ARGV[0]))
   attr["editable"]["storage"]["images_ceph"]["value"] = true
   attr["editable"]["storage"]["objects_ceph"]["value"] = true
   attr["editable"]["storage"]["volumes_ceph"]["value"] = true
+  attr["editable"]["storage"]["ephemeral_ceph"]["value"] = true
   attr["editable"]["storage"]["volumes_lvm"]["value"] = false
-  attr["editable"]["additional_components"]["ceilometer"]["value"] = true
+  attr["editable"]["storage"]["osd_pool_size"]["value"] = "2"
   File.open(ARGV[0], "w").write(attr.to_yaml)' "cluster_$1/attributes.yaml"
   fuel env --attributes --env $1 --upload
   rm -rf "cluster_$1"
 }
 
-function enable_murano_and_sahara {
+function enable_murano_sahara_ceilometer {
   fuel env --attributes --env $1 --download
   ruby -ryaml -e '
   attr = YAML.load(File.read(ARGV[0]))
   attr["editable"]["additional_components"]["sahara"]["value"] = true
   attr["editable"]["additional_components"]["murano"]["value"] = true
+  attr["editable"]["additional_components"]["ceilometer"]["value"] = true
+  File.open(ARGV[0], "w").write(attr.to_yaml)' "cluster_$1/attributes.yaml"
+  fuel env --attributes --env $1 --upload
+}
+
+function enable_ironic {
+  fuel env --attributes --env $1 --download
+  ruby -ryaml -e '
+  attr = YAML.load(File.read(ARGV[0]))
+  attr["editable"]["additional_components"]["ironic"]["value"] = true
+  File.open(ARGV[0], "w").write(attr.to_yaml)' "cluster_$1/attributes.yaml"
+  fuel env --attributes --env $1 --upload
+}
+
+function enable_neutron_l3ha {
+  fuel env --attributes --env $1 --download
+  ruby -ryaml -e '
+  attr = YAML.load(File.read(ARGV[0]))
+  attr["editable"]["neutron_advanced_configuration"]["neutron_l3_ha"]["value"] = true
+  File.open(ARGV[0], "w").write(attr.to_yaml)' "cluster_$1/attributes.yaml"
+  fuel env --attributes --env $1 --upload
+}
+
+function enable_neutron_dvr {
+  fuel env --attributes --env $1 --download
+  ruby -ryaml -e '
+  attr = YAML.load(File.read(ARGV[0]))
+  attr["editable"]["neutron_advanced_configuration"]["neutron_dvr"]["value"] = true
   File.open(ARGV[0], "w").write(attr.to_yaml)' "cluster_$1/attributes.yaml"
   fuel env --attributes --env $1 --upload
 }
@@ -52,16 +86,24 @@ function generate_yamls {
   name=$2
   roles=($3)
 
-  if [ "${name/ceph.ceil}" != "$name" ] ; then
-    enable_ceph_and_ceilometer $env
+  if [ "${name/ceph}" != "$name" ] ; then
+    enable_ceph $env
   fi
-  if [ "${name/murano.sahara}" != "$name" ] ; then
-    enable_murano_and_sahara $env
+  if [ "${name/murano.sahara.ceil}" != "$name" ] ; then
+    enable_murano_sahara_ceilometer $env
+  fi
+  if [ "${name/ironic}" != "$name" ] ; then
+    enable_ironic $env
+  fi
+  if [ "${name/l3ha}" != "$name" ] ; then
+    enable_neutron_l3ha $env
+  fi
+  if [ "${name/dvr}" != "$name" ] ; then
+    enable_neutron_dvr $env
   fi
 
   for id in `list_free_nodes` ; do
     if ! [ -z "${roles[0]}" ] ; then
-      #echo $id
       fuel --env $env node set --node $id --role ${roles[0]}
       roles=("${roles[@]:1}")
       sleep 1
@@ -79,17 +121,32 @@ function clean_env {
   sleep 80
 }
 
-# Neutron vlan
-fuel env --create --name test_neutron_vlan --rel 2 --net neutron --nst vlan --mode ha
-generate_yamls 'test_neutron_vlan' 'neut_vlan.ceph.ceil' 'controller compute ceph-osd ceph-osd mongo' 'primary-controller compute ceph-osd primary-mongo'
+# Neutron vlan ceph
+fuel env --create --name test_neutron_vlan --rel 2 --net vlan
+generate_yamls 'test_neutron_vlan' 'neut_vlan.ceph' 'controller controller controller compute ceph-osd ceph-osd' 'primary-controller compute ceph-osd'
 clean_env 'test_neutron_vlan'
 
-# Neutron gre
-fuel env --create --name test_neutron_gre --rel 2 --net neutron --nst gre --mode ha
-generate_yamls 'test_neutron_gre' 'neut_gre.murano.sahara' 'controller controller controller compute cinder' 'primary-controller controller compute cinder'
-clean_env 'test_neutron_gre'
+# Neutron vlan addons
+fuel env --create --name test_neutron_vlan --rel 2 --net vlan
+generate_yamls 'test_neutron_vlan' 'neut_vlan.murano.sahara.ceil' 'controller controller compute mongo mongo cinder cinder-block-device' 'primary-controller controller compute primary-mongo mongo cinder cinder-block-device'
+clean_env 'test_neutron_vlan'
 
-# Nova network
-fuel env --create --name test_novanet --rel 2 --net nova --mode ha
-generate_yamls 'test_novanet' 'novanet' 'controller compute cinder zabbix-server' 'primary-controller compute zabbix-server'
-clean_env 'test_novanet'
+# Neutron-dvr vlan
+fuel env --create --name test_neutron_vlan --rel 2 --net vlan
+generate_yamls 'test_neutron_vlan' 'neut_vlan.dvr' 'controller controller controller' 'primary-controller'
+clean_env 'test_neutron_vlan'
+
+# Neutron tun addons + ceph
+fuel env --create --name test_neutron_tun --rel 2 --net tun
+generate_yamls 'test_neutron_tun' 'neut_tun.ceph.murano.sahara.ceil' 'controller controller compute ceph-osd ceph-osd mongo mongo' 'primary-controller controller compute ceph-osd primary-mongo mongo'
+clean_env 'test_neutron_tun'
+
+# Neutron tun ironic
+fuel env --create --name test_neutron_tun --rel 2 --net tun
+generate_yamls 'test_neutron_tun' 'neut_tun.ironic' 'controller ironic' 'primary-controller ironic'
+clean_env 'test_neutron_tun'
+
+# Neutron-l3ha tun
+fuel env --create --name test_neutron_tun --rel 2 --net tun
+generate_yamls 'test_neutron_tun' 'neut_tun.l3ha' 'controller controller controller' 'primary-controller'
+clean_env 'test_neutron_tun'
