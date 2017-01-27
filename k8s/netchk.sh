@@ -6,7 +6,7 @@ function get_ns(){
 
 function test_tcp(){
   echo -n "Checking tcp to $1:$2 ... "
-  timeout $3 bash -c "cat < /dev/null > /dev/tcp/$1/$2 && echo OK" || echo ERR
+  timeout -t $3 bash -c "cat < /dev/null > /dev/tcp/$1/$2 && echo OK" || echo ERR
 }
 
 function test_dns(){
