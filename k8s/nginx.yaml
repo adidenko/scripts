@@ -13,6 +13,8 @@ spec:
       - name: nginx
         image: nginx
         imagePullPolicy: IfNotPresent
+    nodeSelector:
+      netdebug: nginx
 ---
 apiVersion: v1
 kind: Service

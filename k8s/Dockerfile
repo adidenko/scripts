@@ -6,6 +6,6 @@ LABEL Name="dbox" Version="0.1"
 ADD netchk.sh /usr/local/bin/netchk.sh
 
 RUN apk update \
-    && apk add wget iproute2 curl bash tcpdump vim
+    && apk add wget iproute2 curl bash tcpdump vim screen
 
 CMD ["/usr/local/bin/netchk.sh"]
