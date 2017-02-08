@@ -10,7 +10,7 @@ function test_tcp(){
 }
 
 function test_dns(){
-  nslookup $2 $1
+  out=$(nslookup $2 $1 2>&1) && echo DNS OK: $out || echo DNS ERR: $out
 }
 
 dns=$(get_ns)

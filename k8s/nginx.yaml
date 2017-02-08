@@ -1,20 +1,16 @@
-apiVersion: extensions/v1beta1
-kind: Deployment
+apiVersion: v1
+kind: Pod
 metadata:
   name: nginx
+  labels:
+    app: nginx
 spec:
-  replicas: 1
-  template:
-    metadata:
-      labels:
-        app: nginx
-    spec:
-      containers:
-      - name: nginx
-        image: nginx
-        imagePullPolicy: IfNotPresent
-    nodeSelector:
-      netdebug: nginx
+  containers:
+  - name: nginx
+    image: nginx
+    imagePullPolicy: IfNotPresent
+  nodeSelector:
+    netdebug: nginx
 ---
 apiVersion: v1
 kind: Service
